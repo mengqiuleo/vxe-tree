@@ -11,6 +11,7 @@ importers:
       '@types/vue': ^2.0.0
       '@vitejs/plugin-vue': ^4.1.0
       '@vitejs/plugin-vue-jsx': ^3.0.1
+      scss: ^0.2.4
       typescript: ^5.0.2
       vite: ^4.3.9
       vue: ^3.2.47
@@ -22,6 +23,7 @@ importers:
       '@types/vue': 2.0.0
       '@vitejs/plugin-vue': 4.2.3_vite@4.3.9+vue@3.3.4
       '@vitejs/plugin-vue-jsx': 3.0.1_vite@4.3.9+vue@3.3.4
+      scss: 0.2.4
       typescript: 5.0.4
       vite: 4.3.9_@types+node@20.2.5
       vue-tsc: 1.6.5_typescript@5.0.4
@@ -955,6 +957,11 @@ packages:
     resolution: {integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==}
     dev: true
 
+  /ometa/0.2.2:
+    resolution: {integrity: sha512-LZuoK/yjU3FvrxPjUXUlZ1bavCfBPqauA7fsNdwi+AVhRdyk2IzgP3JRnevvjzQ6fKHdUw8YISshf53FmpHrng==}
+    engines: {node: '>= 0.2.0'}
+    dev: true
+
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -972,6 +979,13 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /scss/0.2.4:
+    resolution: {integrity: sha512-4u8V87F+Q/upVhUmhPnB4C1R11xojkRkWjExL2v0CX2EXTg18VrKd+9JWoeyCp2VEMdSpJsyAvVU+rVjogh51A==}
+    engines: {node: '>= 0.2.0'}
+    dependencies:
+      ometa: 0.2.2
     dev: true
 
   /semver/6.3.0:

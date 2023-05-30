@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from 'vue'
 
-export interface ITreeNode {
+export interface ITreeNode { //未拍平
   label: string
   id?: string
   children?: ITreeNode[]
@@ -15,7 +15,7 @@ export interface ITreeNode {
   disableToggle?: boolean //折叠
 }
 
-export interface IInnerTreeNode extends ITreeNode {
+export interface IInnerTreeNode extends ITreeNode { //已拍平
   parentId?: string // 父节点ID
   level: number // 父节点层级
   isLeaf?: boolean // 是否叶子节点
@@ -23,7 +23,7 @@ export interface IInnerTreeNode extends ITreeNode {
 
 export const treeProps = {
   data: {
-    type: Object as PropType<Array<IInnerTreeNode>>,
+    type: Object as PropType<Array<ITreeNode>>, //用户传入的是未拍平的数组
     required: true
   },
   // 是否显示 checkbox
