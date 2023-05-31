@@ -1,38 +1,69 @@
-import { ITreeNode, IInnerTreeNode } from './tree-type'
-export function generateInnerTree(
-  tree: ITreeNode[], 
-  level = 0, //表示当前节点的层级，每递归一次，层级加一
-  path = [] as IInnerTreeNode[] //记录当前路径，获取父节点id,因为需要设置 parentId
-): IInnerTreeNode[] {
-  level++
+import type { ICheck, ICheckStrategy, ITreeNode, IInnerTreeNode } from './composables/use-tree-types';
+// import { randomId } from '../../shared/utils';
 
-  return tree.reduce((prev, cur) => {
-    const o = {...cur} as IInnerTreeNode
-    o.level = level //设置当前节点的层级
-
-    //记录path，计算parentId
-    if(path.length > 0 && path[path.length - 1].level >= level) { //说明是在向上冒泡的过程
-      // 目前是由子到父，弹出
-      while(path.length) path.pop()
-    } 
-
-    // 父 - 子 
-    path.push(o)
-    
-    //获取parentNode
-    const parentNode = path[path.length-2]
-    if(parentNode) {
-      o.parentId = parentNode.id
-    }
-
-    if(o.children) {
-      const children = generateInnerTree(o.children, level, path)
-      delete o.children
-      return prev.concat(o, children)
-    } else { //叶子节点
-      o.isLeaf = true
-      return prev.concat(o)
-    }
-  }, [] as IInnerTreeNode[])
-
+function randomId(n = 8): string {
+  // 生成n位长度的字符串
+  const str = 'abcdefghijklmnopqrstuvwxyz0123456789'; // 可以作为常量放到random外面
+  let result = '';
+  for (let i = 0; i < n; i++) {
+    result += str[parseInt((Math.random() * str.length).toString())];
+  }
+  return result;
 }
+
+
+/**
+ * true 默认为 both，false 默认为 none。
+ * "true" defaults to "both" and "false" to "none".
+ */
+export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
+  return typeof check === 'boolean' ?
+    check ? 'both' : 'none'
+    : check;
+};
+/**
+ * Standardized tree node
+ * @param trees
+ * @param keyName
+ * @param childrenName
+ * @param parentId
+ * @returns IInnerTreeNode[]
+ */
+export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName = 'children', parentId?: string): IInnerTreeNode[] => {
+  return trees.map((item) => {
+    const curItem = { ...item, parentId } as IInnerTreeNode;
+    if (
+      !(keyName in curItem)
+      || !curItem[keyName as 'id']
+    ) {
+      curItem[keyName as 'id'] = randomId();
+      curItem.idType = 'random';
+    }
+    if (
+      childrenName in curItem
+      && Array.isArray(curItem[childrenName as 'children'])
+      && curItem[childrenName as 'children']?.length
+    ) {
+      // Child nodes exist
+      curItem[childrenName as 'children'] = formatBasicTree(
+        curItem[childrenName as 'children'] as ITreeNode[],
+        keyName,
+        childrenName,
+        curItem[keyName as 'id'],
+      );
+      // Child nodes exist after node dragging
+      if ('isLeaf' in curItem) {
+        delete curItem.isLeaf;
+      }
+    } else {
+      // There is no child node, and then there is no IsLeaf attribute
+      if (!('isLeaf' in curItem)) {
+        curItem.isLeaf = true;
+      }
+    }
+    if (!curItem.parentId) {
+      delete curItem.parentId;
+    }
+    return curItem;
+  });
+};

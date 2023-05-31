@@ -12,11 +12,14 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "@types/node": "^20.2.5",
     "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "scss": "^0.2.4",
+    "lodash": "^4.17.21",
+    "node-sass": "^9.0.0",
+    "sass": "^1.62.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vue-tsc": "^1.4.2"
