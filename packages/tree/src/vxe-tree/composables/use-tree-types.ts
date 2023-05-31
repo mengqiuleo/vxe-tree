@@ -121,6 +121,12 @@ export interface IDropType {
   dropInner?: boolean;
 }
 
+/**
+ * 'upward' 表示选中一个节点时，其所有父节点也会自动选中。
+ * 'downward' 表示选中一个节点时，其所有子节点也会自动选中。
+ * 'both' 表示既有 'upward' 也有 'downward' 的效果，即选中一个节点时，其所有父节点和子节点都会自动选中。
+ * 'none' 表示不具备自动选中的效果，选中一个节点只会选中该节点本身，不影响其他节点。
+ */
 export type ICheckStrategy = 'upward' | 'downward' | 'both' | 'none';
 
 export type ICheck = boolean | ICheckStrategy;
