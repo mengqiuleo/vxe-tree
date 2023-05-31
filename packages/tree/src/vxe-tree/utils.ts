@@ -15,6 +15,7 @@ function randomId(n = 8): string {
 /**
  * true 默认为 both，false 默认为 none。
  * "true" defaults to "both" and "false" to "none".
+ * 如果是boolean值，那么设置它为 both或者none，否则设置为'upward' | 'downward'
  */
 export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
   return typeof check === 'boolean' ?
@@ -22,7 +23,7 @@ export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
     : check;
 };
 /**
- * Standardized tree node
+ * Standardized tree node，我感觉这个是没有拍平的，只是遍历每个节点，然后让它增加id
  * @param trees
  * @param keyName
  * @param childrenName
@@ -32,6 +33,7 @@ export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
 export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName = 'children', parentId?: string): IInnerTreeNode[] => {
   return trees.map((item) => {
     const curItem = { ...item, parentId } as IInnerTreeNode;
+    //先给每个节点增加一个 id
     if (
       !(keyName in curItem)
       || !curItem[keyName as 'id']

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import vxeTree from './vxe-tree/tree';
+// import checkbox from './checkbox/checkbox'
 
 const openCheck = ref(true);
 const checkStrategy = ref(['both', 'downward', 'upward', 'none']);
@@ -61,19 +62,20 @@ const nodeClick = (node) => {
 </script>
 
 <template>
-  <div>
-    <!-- <label class="flex items-center mr-xl"><span class="inline-block mr-xs">开启勾选</span><switch v-model="openCheck"></switch></label> -->
-    <!-- <checkbox-group v-if="openCheck" v-model="currentStrategy" direction="row">
-      <checkbox v-for="strategy of checkStrategy" :key="strategy" :value="strategy">{{ strategy }}</checkbox>
-    </checkbox-group> -->
+  <div class="container">
     <vxeTree :data="data"
     :check="currentStrategy"
     @toggle-change="toggleChange"
     @check-change="checkChange"
     @select-change="selectChange"
     @node-click="nodeClick"/>
+
+    <!-- <checkbox /> -->
   </div>
 </template>
 
 <style scoped>
+.container {
+  widows: 500px;
+}
 </style>

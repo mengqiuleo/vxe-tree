@@ -34,6 +34,8 @@ export default defineComponent({
       onDrop,
       onDragend,
     } = inject(USE_TREE_TOKEN) as Partial<IUseTree>;
+    //inject(USE_TREE_TOKEN) 返回的实际上是一个对象，该对象包含了 IUseTree 接口中定义的一系列方法和属性。而通过使用 Partial<IUseTree>，我们将这些方法和属性都变为可选的，这意味着我们可以只使用其中的某些方法或属性，而不用关心其他未使用的方法或属性是否存在。
+
     const treeInstance = inject(TREE_INSTANCE) as ComponentInternalInstance | null;
     const ns = useNamespace('tree');
 
@@ -45,7 +47,7 @@ export default defineComponent({
       if (!data.value?.checked) {
         return false;
       }
-      const checkFormat = formatCheckStatus(check.value);
+      const checkFormat = formatCheckStatus(check.value);//规范用户传入的'upward' | 'downward' | 'both' | 'none'
       if (['upward', 'both'].includes(checkFormat)) {
         const children = getChildren?.(data.value) || [];
         const checkedChildren = children?.filter((item: IInnerTreeNode) => item.checked);
@@ -99,10 +101,13 @@ export default defineComponent({
           onMouseenter={showOperationArea}
           onMouseleave={hideOperationArea}
         >
+          {/* 连接线 */}
           {nodeVLineStyles.value.map((item) => (
             <span class={nodeVLineClass.value} style={item}></span>
           ))}
           <span class={nodeHLineClass.value} style={omit(nodeVLineStyles.value[0], ['height', 'top'])}></span>
+
+          {/* 每个元素 */}
           <div
             class={nodeContentClass.value}
             onClick={() => {
@@ -111,7 +116,9 @@ export default defineComponent({
             }}
             {...dragdropProps}
           >
+            {/* 折叠 */}
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <DTreeNodeToggle data={data.value} />}
+            
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
               {check.value && <Checkbox {...checkboxProps.value} />}
               {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <DTreeNodeContent data={data.value} />}
@@ -125,6 +132,8 @@ export default defineComponent({
                 </>
               )}
             </div>
+
+            {/* 新增或删除 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
                 <button

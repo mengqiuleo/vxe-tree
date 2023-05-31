@@ -15,6 +15,7 @@ export default defineComponent({
   name: 'ResizeObserver',
   props: resizeObserverProps,
   emits: ['resize'],
+  // @ts-ignore
   setup(props, { slots }) {
 
     const state = reactive<ResizeObserverState>({
