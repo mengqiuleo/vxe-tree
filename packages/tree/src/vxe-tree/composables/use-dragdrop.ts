@@ -3,7 +3,7 @@ import type { Ref } from 'vue';
 import type { TreeProps } from '../tree-types';
 import type { DragState, IUseDraggable, IDropNode, IInnerTreeNode, ITreeNode, IDropType } from './use-tree-types';
 import cloneDeep from 'lodash/cloneDeep';
-import { useNamespace } from '../shared/use-namespace';
+import { useNamespace } from '../../shared/use-namespace';
 import { formatBasicTree } from '../utils';
 
 const ns = useNamespace('tree');

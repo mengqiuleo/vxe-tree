@@ -1,12 +1,12 @@
 import { Ref, ref } from 'vue';
-import { randomId } from '../shared/randomId';
+import { randomId } from '../../shared/randomId';
 import { IInnerTreeNode, ITreeNode, IUseCore, IUseOperate } from './use-tree-types';
 
 export function useOperate() {
   return function useOperateFn(data: Ref<IInnerTreeNode[]>, core: IUseCore): IUseOperate {
     const { setNodeValue, getChildren, getIndex, getLevel, getParent } = core;
 
-    const insertBefore = (parentNode: ITreeNode, node: ITreeNode, referenceNode?: ITreeNode): void => {
+    const insertBefore = (parentNode: ITreeNode, node: ITreeNode, referenceNode?: IInnerTreeNode): void => {
       const children = getChildren(parentNode, {
         recursive: false,
       });
@@ -38,7 +38,7 @@ export function useOperate() {
       if (currentNode.value.id === undefined) {
         currentNode.value.id = randomId();
       }
-
+      // @ts-ignore
       data.value = data.value.slice(0, insertedIndex).concat(currentNode.value, data.value.slice(insertedIndex, data.value.length));
     };
 

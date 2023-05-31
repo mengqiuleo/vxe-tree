@@ -72,7 +72,7 @@ export interface IUseDisable {
 
 export interface IUseOperate {
   insertBefore: (parentNode: ITreeNode, node: ITreeNode, referenceNode?: ITreeNode) => void;
-  removeNode: (node: ITreeNode) => void;
+  removeNode: (node: ITreeNode, config? :{ recursive :boolean }) => void;
   editNode: (node: ITreeNode, label: string) => void;
 }
 

@@ -1,26 +1,7 @@
-// import { randomId } from '../../../shared/utils';
 import { useInitSelectCollection } from './use-init-select-collection';
 import { IInnerTreeNode, ITreeNode } from './use-tree-types';
-
-function randomId(n = 8): string {
-  // 生成n位长度的字符串
-  const str = 'abcdefghijklmnopqrstuvwxyz0123456789'; // 可以作为常量放到random外面
-  let result = '';
-  for (let i = 0; i < n; i++) {
-    result += str[parseInt((Math.random() * str.length).toString())];
-  }
-  return result;
-}
-
-
-function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, fields: K[]): Omit<T, K> {
-  const shallowCopy = Object.assign({}, obj);
-  for (let i = 0; i < fields.length; i += 1) {
-    const key = fields[i];
-    delete shallowCopy[key];
-  }
-  return shallowCopy;
-}
+import omit from '../../shared/omit'
+import { randomId } from '../../shared/randomId'
 
 
 export function flatToNested(flatTree: IInnerTreeNode[]): ITreeNode[] {

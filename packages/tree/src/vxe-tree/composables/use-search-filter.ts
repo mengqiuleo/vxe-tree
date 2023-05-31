@@ -4,8 +4,8 @@ import { trim } from 'lodash';
 export function useSearchFilter() {
   return function useSearchFilterFn(data: Ref<IInnerTreeNode[]>, core: IUseCore): IUseSearchFilter {
     const { clearNodeMap, getExpendedTree } = core;
-    const virtualListRef = ref();
-    const resetNodeSearchProperty = () => {
+    const virtualListRef = ref(); //virtualListRef 是一个 ref 对象，用于在虚拟滚动时得到组件内部的虚拟列表实例，方便进行滚动操作。
+    const resetNodeSearchProperty = () => { //重置相关参数
       data.value.forEach((item) => {
         item.childrenMatched = false;
         item.isHide = false;
@@ -30,8 +30,8 @@ export function useSearchFilter() {
       const trimmedTarget = trim(target).toLocaleLowerCase();
       for (let i = 0; i < data.value.length; i++) {
         const key = matchKey ? data.value[i][matchKey] : data.value[i].label;
-        const selfMatched = pattern ? pattern.test(key) : key.toLocaleLowerCase().includes(trimmedTarget);
-        data.value[i].isMatched = selfMatched;
+        const selfMatched = pattern ? pattern.test(key) : key.toLocaleLowerCase().includes(trimmedTarget);//这里是匹配到了当前节点
+        data.value[i].isMatched = selfMatched; //将匹配结果记录在该节点的一些状态值上
         // 需要向前找父节点，处理父节点的childrenMatched、expand参数(子节点匹配到时，父节点需要展开)
         if (selfMatched) {
           data.value[i].matchedText = matchKey ? data.value[i].label : trimmedTarget;
@@ -65,10 +65,10 @@ export function useSearchFilter() {
       return parentIdSet.has(data.value[pre].id) && data.value[pre].isMatched;
     };
 
-    const dealNodeHideProperty = () => {
-      data.value.forEach((item, index) => {
+    const dealNodeHideProperty = () => { // 对于过滤操作，需要设置节点是否需要隐藏，上面已经对匹配到的标签上增加了一个 isMatched 属性
+      data.value.forEach((item, index) => { 
         if (item.isMatched || item.childrenMatched) {
-          item.isHide = false;
+          item.isHide = false; //如果被匹配到了，不能隐藏，需要展开
         } else {
           // 需要判断是否有父节点有匹配
           if (!item.parentId) {
@@ -103,7 +103,10 @@ export function useSearchFilter() {
       return index >= showTreeData.length ? 0 : index;
     };
 
-    const searchTree = (target: string, option: SearchFilterOption): void => {
+    //matchKey 表示搜索文本应该匹配的数据属性名，默认值为 undefined，表示搜索每个节点的 label 属性。
+    //pattern 表示搜索文本所用正则表达式，如果不提供，则使用默认的字符串查找方法。
+    //isFilter 表示是否对搜索结果进行过滤操作，过滤后不符合条件的节点将被隐藏。
+    const searchTree = (target: string, option: SearchFilterOption): void => { //target要搜索的文本内容，option 是一个可选配置项对象，包含三个属性：matchKey、pattern 和 isFilter。
       // 搜索前需要先将nodeMap清空, 重置搜索相关参数
       clearNodeMap();
       resetNodeSearchProperty();
@@ -111,8 +114,8 @@ export function useSearchFilter() {
         return;
       }
       dealMatchedData(target, option.matchKey, option.pattern);
-      // 对于过滤操作，需要设置节点是否需要隐藏
-      if (option.isFilter) {
+      
+      if (option.isFilter) { // 对于过滤操作，需要设置节点是否需要隐藏
         dealNodeHideProperty();
       }
       // 虚拟滚动，需要得到第一个匹配的节点，然后滚动至该节点

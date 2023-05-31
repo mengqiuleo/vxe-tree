@@ -6,8 +6,8 @@ export function useToggle() {
     const { getNode, setNodeValue } = core;
     const { lazyLoadNodes } = lazyLode;
 
-    const expandNode = (node: IInnerTreeNode): void => {
-      if (node.disableToggle || node.loading) {
+    const expandNode = (node: IInnerTreeNode): void => { //接受一个树节点作为参数，将该节点展开
+      if (node.disableToggle || node.loading) { //如果该节点不能折叠 或者 正在加载
         return;
       }
 
@@ -15,7 +15,7 @@ export function useToggle() {
       context.emit('toggle-change', node);
     };
 
-    const collapseNode = (node: IInnerTreeNode): void => {
+    const collapseNode = (node: IInnerTreeNode): void => { //接受一个树节点作为参数，将该节点收起
       if (node.disableToggle || node.loading) {
         return;
       }
@@ -23,7 +23,7 @@ export function useToggle() {
       context.emit('toggle-change', node);
     };
 
-    const toggleNode = (node: IInnerTreeNode): void => {
+    const toggleNode = (node: IInnerTreeNode): void => {  //接受一个树节点作为参数，切换该节点的展开/收起状态。
       if (node.disableToggle || node.loading) {
         return;
       }
@@ -36,7 +36,7 @@ export function useToggle() {
       lazyLoadNodes(node);
     };
 
-    const expandAllNodes = (): void => {
+    const expandAllNodes = (): void => { //展开所有节点
       data.value.forEach((node: IInnerTreeNode) => {
         expandNode(node);
       });

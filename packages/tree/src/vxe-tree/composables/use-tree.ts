@@ -8,7 +8,7 @@ import { generateInnerTree } from './utils';
 export const DEFAULT_TREE_PLUGINS = [useToggle()];
 
 export function useTree(tree: ITreeNode[], plugins = [], context: SetupContext): Partial<IUseTree> {
-  const treeData = ref<IInnerTreeNode[]>(generateInnerTree(tree));
+  const treeData = ref<IInnerTreeNode[]>(generateInnerTree(tree)); //先生成拍平数组
   const core: IUseCore = useCore()(treeData);
 
   // 因为展开操作和懒加载有耦合，需要此处引入

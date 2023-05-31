@@ -5,10 +5,10 @@ import { treeNodeProps, TreeNodeProps } from '../tree-types';
 import { IInnerTreeNode, IUseTree, useTreeNode } from '../composables';
 import DTreeNodeToggle from './tree-node-toggle';
 import DTreeNodeLoading from './tree-node-loading';
-// import { Checkbox } from '../../../checkbox';
+import  Checkbox  from '../../checkbox/checkbox';
 import DTreeNodeContent from './tree-node-content';
-import { useNamespace } from '../shared/use-namespace';
-import { omit } from '../shared/omit';
+import { useNamespace } from '../../shared/use-namespace';
+import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
 // import { createI18nTranslate } from '../../../locale/create';
 
@@ -113,7 +113,7 @@ export default defineComponent({
           >
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <DTreeNodeToggle data={data.value} />}
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
-              {check.value && <span {...checkboxProps.value} />}
+              {check.value && <Checkbox {...checkboxProps.value} />}
               {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <DTreeNodeContent data={data.value} />}
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <DTreeNodeLoading /> : ''}
               {dragdrop.value && (

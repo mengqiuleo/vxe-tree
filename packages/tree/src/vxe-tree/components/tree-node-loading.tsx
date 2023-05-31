@@ -1,5 +1,5 @@
 import { defineComponent, getCurrentInstance } from 'vue';
-import { useNamespace } from '../shared/use-namespace';
+import { useNamespace } from '../../shared/use-namespace';
 
 export default defineComponent({
   name: 'DTreeNodeLoading',

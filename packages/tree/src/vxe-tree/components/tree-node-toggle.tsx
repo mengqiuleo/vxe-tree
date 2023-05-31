@@ -3,7 +3,7 @@ import { USE_TREE_TOKEN } from '../const';
 import { ITreeNode, IUseTree } from '../composables';
 import { IconClose } from './icon-close';
 import { IconOpen } from './icon-open';
-import { useNamespace } from '../shared/use-namespace';
+import { useNamespace } from '../../shared/use-namespace';
 
 export default defineComponent({
   name: 'DTreeNodeToggle',

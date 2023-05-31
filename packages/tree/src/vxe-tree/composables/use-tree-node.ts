@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue';
 import { computed } from 'vue';
 import { NODE_HEIGHT, NODE_INDENT } from '../const';
 import { IInnerTreeNode } from './use-tree-types';
-import { useNamespace } from '../shared/use-namespace';
+import { useNamespace } from '../../shared/use-namespace';
 
 const ns = useNamespace('tree');
 
@@ -22,10 +22,11 @@ export interface IUseTreeNode {
 export function useTreeNode(data: ComputedRef<IInnerTreeNode>): IUseTreeNode {
   const nodeClass = computed(() => [ns.e('node'), data.value?.expanded && ns.em('node', 'open')]);
   const nodeStyle = computed(() => {
-    return { paddingLeft: `${NODE_INDENT * (data.value?.level - 1)}px` };
+    return { paddingLeft: `${NODE_INDENT * (data.value?.level - 1)}px` }; //缩进
   });
 
   const nodeVLineClass = computed(() => [data.value?.level !== 1 && ns.e('node-vline')]);
+  //连接线的样式
   const nodeVLineStyles = computed(() => {
     if (!data.value || data.value.level === 1) {
       return [];
@@ -47,6 +48,8 @@ export function useTreeNode(data: ComputedRef<IInnerTreeNode>): IUseTreeNode {
 
   const nodeOperationAreaClass = computed(() => ns.e('node-operation-area'));
 
+  //用于将当前节点的label文本按照搜索关键词进行拆分并高亮搜索关键词。在这个函数中，首先将当前节点的matchedText和label文本提取出来，
+  //并使用正则表达式构造一个全局不区分大小写的匹配模式。然后，通过split方法将匹配结果作为分隔符对label文本进行拆分，最终返回一个由拆分后的文本片段组成的数组。
   const matchedContents = computed(() => {
     const matchItem = data.value?.matchedText || '';
     const label = data.value?.label || '';
@@ -55,6 +58,7 @@ export function useTreeNode(data: ComputedRef<IInnerTreeNode>): IUseTreeNode {
     return label.split(regExp);
   });
 
+  //高亮文本的样式类名
   const highlightCls = ns.e('match-highlight');
 
   return {

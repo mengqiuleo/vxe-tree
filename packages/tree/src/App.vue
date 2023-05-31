@@ -1,60 +1,77 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import vxeTree from './vxe-tree/tree';
 
-const treeRef = ref();
-const selectedNode = ref();
+const openCheck = ref(true);
+const checkStrategy = ref(['both', 'downward', 'upward', 'none']);
+const currentStrategy = ref('both');
+
 const data = ref([
   {
     label: 'Parent node 1',
-    id: 'node-1',
     children: [
       {
-        label: 'Leaf node 1-1',
-        id: 'node-1-1',
-        children: [{ label: 'Leaf node 1-1-1', id: 'node-1-1-1' }],
+        label: 'Parent node 1-1',
+        children: [{ label: 'Leaf node 1-1-1' }, { label: 'Leaf node 1-1-2' }],
       },
-      { label: 'Leaf node 1-2', id: 'node-1-2' },
+      { label: 'Leaf node 1-2' },
     ],
   },
-  { label: 'Parent node 2', id: 'node-2' },
+  { label: 'Leaf node 2' },
 ]);
 
-const addNode = () => {
-  if (!selectedNode.value) {
-    return;
+watch(openCheck, (newVal) => {
+  if (newVal === false) {
+    currentStrategy.value = false;
+  } else {
+    currentStrategy.value = 'both';
+
+    data.value = [
+      {
+        label: 'Parent node 1',
+        children: [
+          {
+            label: 'Parent node 1-1',
+            children: [{ label: 'Leaf node 1-1-1' }, { label: 'Leaf node 1-1-2' }],
+          },
+          { label: 'Leaf node 1-2' },
+        ],
+      },
+      { label: 'Leaf node 2' },
+    ];
   }
-  const childs = treeRef.value.treeFactory.getChildren(selectedNode.value);
-  let labelName = 'new node';
-  if (!childs || childs.length === 0) {
-    labelName = selectedNode.value.label + '-1';
-  } else if (childs.length > 0) {
-    labelName = selectedNode.value.label + `-${childs.length + 1}`;
-  }
-  if (labelName.startsWith('Parent')) {
-    labelName = labelName.replace('Parent', 'Leaf');
-  }
-  treeRef.value.treeFactory.insertBefore(selectedNode.value, { label: labelName });
+});
+
+const toggleChange = (node) => {
+  console.log('toggleChange node:', node);
 };
 
-const deleteNode = () => {
-  if (!selectedNode.value) {
-    return;
-  }
-  treeRef.value.treeFactory.removeNode(selectedNode.value);
+const checkChange = (node) => {
+  console.log('checkChange node:', node);
 };
 
-const selectChange = (selected) => {
-  selectedNode.value = selected;
+const selectChange = (node) => {
+  console.log('selectChange node:', node);
+};
+
+const nodeClick = (node) => {
+  console.log('nodeClick node:', node);
 };
 
 </script>
 
 <template>
   <div>
-    <vxeTree :data="data" ref="treeRef" operate @select-change="selectChange" />
-    <button variant="solid" size="sm" @click="addNode">Add</button>
-    <button size="sm" class="ml-xs" @click="deleteNode">Delete</button>
+    <!-- <label class="flex items-center mr-xl"><span class="inline-block mr-xs">开启勾选</span><switch v-model="openCheck"></switch></label> -->
+    <!-- <checkbox-group v-if="openCheck" v-model="currentStrategy" direction="row">
+      <checkbox v-for="strategy of checkStrategy" :key="strategy" :value="strategy">{{ strategy }}</checkbox>
+    </checkbox-group> -->
+    <vxeTree :data="data"
+    :check="currentStrategy"
+    @toggle-change="toggleChange"
+    @check-change="checkChange"
+    @select-change="selectChange"
+    @node-click="nodeClick"/>
   </div>
 </template>
 

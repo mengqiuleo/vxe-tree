@@ -17,7 +17,7 @@ import {
 } from './composables';
 import { USE_TREE_TOKEN, NODE_HEIGHT, TREE_INSTANCE } from './const';
 import { TreeProps, treeProps } from './tree-types';
-import { useNamespace } from './shared/use-namespace';
+import { useNamespace } from '../shared/use-namespace';
 import { formatCheckStatus, formatBasicTree } from './utils';
 import './tree.scss';
 
