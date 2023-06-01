@@ -2,6 +2,7 @@ import { Ref, SetupContext } from 'vue';
 import { useInitSelectCollection } from './use-init-select-collection';
 import { IInnerTreeNode, IUseCore, IUseSelect } from './use-tree-types';
 
+//控制选中，不是checkbox，是选中整行
 export function useSelect() {
   return function useSelectFn(data: Ref<IInnerTreeNode[]>, core: IUseCore, context: SetupContext): IUseSelect {
     const { setNodeValue } = core;

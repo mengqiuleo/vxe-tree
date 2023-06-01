@@ -1,6 +1,7 @@
 import { Ref, SetupContext } from 'vue';
 import { IInnerTreeNode, IUseCore, IUseToggle, IUseLazyLoad } from './use-tree-types';
 
+// 控制展开收起，这里和 lazyLoad有耦合
 export function useToggle() {
   return function useToggleFn(data: Ref<IInnerTreeNode[]>, core: IUseCore, context: SetupContext, lazyLode: IUseLazyLoad): IUseToggle {
     const { getNode, setNodeValue } = core;
@@ -32,7 +33,7 @@ export function useToggle() {
       } else {
         expandNode(node);
       }
-      // 懒加载节点
+      //* 懒加载节点: 耦合
       lazyLoadNodes(node);
     };
 

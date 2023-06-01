@@ -36,6 +36,8 @@ export function useLazyLoad() {
       setNodeValue(node, 'childNodeCount', childrenNodes.length);
     };
 
+    //懒加载是用来异步加载树的内容的
+    //我们需要向外emit一个事件，外部调用异步方法获取数据，传入回调函数，利用回调函数将获取到的节点传给我们组件内部，然后我们再渲染异步获取到的节点
     const lazyLoadNodes = (node: IInnerTreeNode): void => {
       const innerNode = getNode(node); //获取最开始的需要懒加载的节点
       if (!innerNode.isLeaf && !innerNode.childNodeCount) {//不是叶子节点并且子节点数量不为0

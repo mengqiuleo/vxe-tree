@@ -71,9 +71,9 @@ export interface IUseDisable {
 }
 
 export interface IUseOperate {
-  insertBefore: (parentNode: ITreeNode, node: ITreeNode, referenceNode?: ITreeNode) => void;
-  removeNode: (node: ITreeNode, config? :{ recursive :boolean }) => void;
-  editNode: (node: ITreeNode, label: string) => void;
+  insertBefore: (parentNode: IInnerTreeNode, node: ITreeNode, referenceNode?: IInnerTreeNode) => void;
+  removeNode: (node: IInnerTreeNode, config? :{ recursive :boolean }) => void;
+  editNode: (node: IInnerTreeNode, label: string) => void;
 }
 
 export interface IUseSelect {

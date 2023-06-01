@@ -6,7 +6,7 @@ export function useOperate() {
   return function useOperateFn(data: Ref<IInnerTreeNode[]>, core: IUseCore): IUseOperate {
     const { setNodeValue, getChildren, getIndex, getLevel, getParent } = core;
 
-    const insertBefore = (parentNode: ITreeNode, node: ITreeNode, referenceNode?: IInnerTreeNode): void => {
+    const insertBefore = (parentNode: IInnerTreeNode, node: ITreeNode, referenceNode?: IInnerTreeNode): void => {
       const children = getChildren(parentNode, {
         recursive: false,
       });

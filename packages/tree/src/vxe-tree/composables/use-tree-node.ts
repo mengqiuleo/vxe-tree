@@ -19,6 +19,7 @@ export interface IUseTreeNode {
   highlightCls: string;
 }
 
+// 返回每个节点的 基本class和基本样式
 export function useTreeNode(data: ComputedRef<IInnerTreeNode>): IUseTreeNode {
   const nodeClass = computed(() => [ns.e('node'), data.value?.expanded && ns.em('node', 'open')]);
   const nodeStyle = computed(() => {

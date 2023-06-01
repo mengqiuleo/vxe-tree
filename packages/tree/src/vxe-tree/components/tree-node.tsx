@@ -12,7 +12,7 @@ import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
 
 export default defineComponent({
-  name: 'DTreeNode',
+  name: 'vxeTreeNode',
   props: treeNodeProps,
   setup(props: TreeNodeProps, { slots }) {
 
@@ -58,7 +58,7 @@ export default defineComponent({
       return {
         key: data.value?.id,
         disabled: data.value?.disableCheck,
-        halfChecked: halfChecked.value,
+        halfChecked: halfChecked.value,//半选，子节点有被选中的，那父节点就要半选
         modelValue: data.value?.checked,
         'onUpdate:modelValue': () => {
           toggleCheckNode?.(data.value);
@@ -71,6 +71,7 @@ export default defineComponent({
 
     const isShowOperationArea = ref(false);
 
+    // 见名知意：展示操作图标
     const showOperationArea = () => {
       isShowOperationArea.value = true;
     };
@@ -113,7 +114,7 @@ export default defineComponent({
             }}
             {...dragdropProps}
           >
-            {/* 折叠 + 自定义图标 */}
+            {/* 折叠 + 自定义图标：为什么每个节点都要有这个，叶子节点不是没有图标吗？因为叶子节点虽然没有图标，但是需要占位符，保持缩进一致 */}
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <VTreeNodeToggle data={data.value} />}
             
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
@@ -130,7 +131,7 @@ export default defineComponent({
               )}
             </div>
 
-            {/* 新增或删除 */}
+            {/* 新增或删除： isShowOperationArea值是干嘛的？我们鼠标移到每一个元素身上，就会显示add和delete图标 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
                 <button
