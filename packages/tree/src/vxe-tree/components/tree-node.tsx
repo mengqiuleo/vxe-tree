@@ -1,12 +1,13 @@
 import type { ComputedRef, ComponentInternalInstance } from 'vue';
-import { getCurrentInstance, ref, computed, defineComponent, inject, renderSlot, toRefs, useSlots } from 'vue';
+import { ref, computed, defineComponent, inject, renderSlot, toRefs, useSlots } from 'vue';
 import { NODE_HEIGHT, TREE_INSTANCE, USE_TREE_TOKEN } from '../const';
 import { treeNodeProps, TreeNodeProps } from '../tree-types';
 import { IInnerTreeNode, IUseTree, useTreeNode } from '../composables';
-import DTreeNodeToggle from './tree-node-toggle';
-import DTreeNodeLoading from './tree-node-loading';
-import  Checkbox  from '../../checkbox/checkbox';
-import DTreeNodeContent from './tree-node-content';
+import VTreeNodeToggle from './tree-node-toggle';
+import VTreeNodeLoading from './tree-node-loading';
+import  Checkbox  from '../../checkbox-disuse/checkbox';
+// import { IconCheckBox } from './icon-checkbos';
+import VTreeNodeContent from './tree-node-content';
 import { useNamespace } from '../../shared/use-namespace';
 import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
@@ -16,7 +17,7 @@ export default defineComponent({
   name: 'DTreeNode',
   props: treeNodeProps,
   setup(props: TreeNodeProps, { slots }) {
-    const app = getCurrentInstance();
+
     // const t = createI18nTranslate('DTree', app);
 
     const { data, check, dragdrop, operate } = toRefs(props);
@@ -116,13 +117,13 @@ export default defineComponent({
             }}
             {...dragdropProps}
           >
-            {/* 折叠 */}
-            {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <DTreeNodeToggle data={data.value} />}
+            {/* 折叠 + 自定义图标 */}
+            {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <VTreeNodeToggle data={data.value} />}
             
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
               {check.value && <Checkbox {...checkboxProps.value} />}
-              {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <DTreeNodeContent data={data.value} />}
-              {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <DTreeNodeLoading /> : ''}
+              {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <VTreeNodeContent data={data.value} />}
+              {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
               {dragdrop.value && (
                 <>
                   <div class={ns.em('node', 'drop-top')} />

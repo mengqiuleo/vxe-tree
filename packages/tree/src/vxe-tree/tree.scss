@@ -1,38 +1,41 @@
-@import '../styles-var/devui-var.scss';
+// @import '../styles-var/devui-var.scss';
 
-$devui-prefix: vxe;
+@import '../styles-var/basic.scss';
+@import './tree-var.scss';
+
+$vxe-prefix: vxe;
 
 $keyframe-blue: #5e7ce0;
 
-.#{$devui-prefix}-text-ellipsis {
+.#{$vxe-prefix}-text-ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.#{$devui-prefix}-tree-indicator {
+.#{$vxe-prefix}-tree-indicator {
   height: 1px;
-  background-color: $devui-brand;
+  background-color: $vxe-brand;
   position: absolute;
 }
 
-.#{$devui-prefix}-tree__node {
+.#{$vxe-prefix}-tree__node {
   height: 30px;
-  color: $devui-text-weak;
+  color: $vxe-text-weak;
   line-height: 1.5;
   white-space: nowrap;
   position: relative;
 
   &--drop {
     &-inner {
-      .#{$devui-prefix}-tree__node {
+      .#{$vxe-prefix}-tree__node {
         &--drop-top {
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           height: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
 
         &--drop-bottom {
@@ -41,7 +44,7 @@ $keyframe-blue: #5e7ce0;
           left: 0;
           right: 0;
           height: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
 
         &--drop-left {
@@ -50,7 +53,7 @@ $keyframe-blue: #5e7ce0;
           bottom: 0;
           left: 0;
           width: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
 
         &--drop-right {
@@ -59,83 +62,94 @@ $keyframe-blue: #5e7ce0;
           bottom: 0;
           right: 0;
           width: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
       }
     }
 
     &-prev {
-      .#{$devui-prefix}-tree__node {
+      .#{$vxe-prefix}-tree__node {
         &--drop-top {
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           height: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
       }
     }
 
     &-next::before {
-      .#{$devui-prefix}-tree__node {
+      .#{$vxe-prefix}-tree__node {
         &--drop-bottom {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
           height: 2px;
-          background-color: $devui-brand;
+          background-color: $vxe-brand;
         }
       }
     }
   }
 
-  .#{$devui-prefix}-tree__node-content {
+  .#{$vxe-prefix}-tree__node-content {
     display: inline-flex;
     align-items: center;
-    font-size: $devui-font-size;
+    font-size: $vxe-font-size;
     padding-right: 10px;
     width: 100%;
-    border-radius: $devui-border-radius;
+    border-radius: $vxe-border-radius;
     padding-left: 6px;
+    // background-color: #5e7ce0;
     cursor: pointer;
 
     &.active {
-      background-color: $devui-list-item-selected-bg;
+      background-color: $vxe-list-item-selected-bg;
+      // background-color: #5e7ce0;
       text-decoration: none;
       border-color: transparent;
     }
 
     &:not(.active):hover {
       transition: background-color 0.5s;
-      background-color: $devui-list-item-hover-bg;
+      background-color: $vxe-list-item-hover-bg;
+      // background-color: red;
     }
   }
 
-  .#{$devui-prefix}-tree__node-content--value-wrapper {
+  .#{$vxe-prefix}-tree__node-content--value-wrapper {
     display: inline-flex;
     align-items: center;
     height: 30px;
     overflow: hidden;
 
-    .#{$devui-prefix}-tree__node-loading {
+    .#{$vxe-prefix}-checkbox {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+    }
+
+    .#{$vxe-prefix}-tree__node-loading {
       margin-left: 50px;
 
-      .#{$devui-prefix}-loading-area {
+      .#{$vxe-prefix}-loading-area {
         background: none;
       }
     }
   }
 
-  .#{$devui-prefix}-tree-node__children {
+  .#{$vxe-prefix}-tree-node__children {
     padding-left: 10px;
 
     &:first-child {
       border-left-color: transparent;
     }
 
-    .#{$devui-prefix}-tree__node {
+    .#{$vxe-prefix}-tree__node {
       margin-left: 8px;
       content: '';
       position: relative;
@@ -146,13 +160,13 @@ $keyframe-blue: #5e7ce0;
     }
   }
 
-  .#{$devui-prefix}-tree__node-title {
-    @extend .#{$devui-prefix}-text-ellipsis;
+  .#{$vxe-prefix}-tree__node-title {
+    @extend .#{$vxe-prefix}-text-ellipsis;
 
     margin-left: 5px;
     display: inline-block;
     border: 1px dashed transparent;
-    border-radius: $devui-border-radius;
+    border-radius: $vxe-border-radius;
     max-width: 100%;
     flex: 1;
 
@@ -160,63 +174,63 @@ $keyframe-blue: #5e7ce0;
       cursor: pointer;
     }
 
-    .#{$devui-prefix}-tree__match-highlight {
+    .#{$vxe-prefix}-tree__match-highlight {
       font-weight: bold;
-      color: $devui-brand;
+      color: $vxe-brand;
     }
   }
 
-  .#{$devui-prefix}-tree-node__edit {
+  .#{$vxe-prefix}-tree-node__edit {
     margin-left: 0.4em;
     padding: 0.1em;
 
-    > .#{$devui-prefix}-input-sm {
+    > .#{$vxe-prefix}-input-sm {
       height: 26px;
 
       &.error,
       &.error:hover,
       &.error:focus {
-        border-color: $devui-danger;
+        border-color: $vxe-danger;
       }
     }
   }
 
-  .#{$devui-prefix}-tree-node__leaf {
+  .#{$vxe-prefix}-tree-node__leaf {
     &:not(.disabled) {
       cursor: default;
     }
 
-    .#{$devui-prefix}-tree-node__leaf--default {
+    .#{$vxe-prefix}-tree-node__leaf--default {
       color: #f2a71f;
     }
 
-    .#{$devui-prefix}-leaf-icon-none {
+    .#{$vxe-prefix}-leaf-icon-none {
       display: inline-block;
       width: 16px;
       height: 16px;
     }
   }
 
-  .#{$devui-prefix}-tree__node-folder {
+  .#{$vxe-prefix}-tree__node-folder {
     display: inline-block;
     vertical-align: middle;
     user-select: none;
-    font-size: $devui-font-size-icon;
+    font-size: $vxe-font-size-icon;
     height: 16px;
     line-height: 16px;
 
-    .#{$devui-prefix}-tree-node__folder--icon {
+    .#{$vxe-prefix}-tree-node__folder--icon {
       display: inline-block;
       height: 16px;
       line-height: 16px;
 
       &:hover {
         svg g path {
-          fill: $devui-icon-fill-active;
+          fill: $vxe-icon-fill-active;
         }
 
         svg g rect {
-          stroke: $devui-icon-fill-active;
+          stroke: $vxe-icon-fill-active;
         }
       }
     }
@@ -225,7 +239,7 @@ $keyframe-blue: #5e7ce0;
       cursor: pointer;
     }
 
-    .#{$devui-prefix}-tree-node__folder--default {
+    .#{$vxe-prefix}-tree-node__folder--default {
       color: #f2b806;
     }
   }
@@ -237,20 +251,20 @@ $keyframe-blue: #5e7ce0;
     margin-left: 8px;
   }
 
-  .#{$devui-prefix}-loading-children {
+  .#{$vxe-prefix}-loading-children {
     display: inline-block;
     vertical-align: middle;
     margin-left: 0.5em;
     margin-top: 0.15em;
-    color: $devui-info;
+    color: $vxe-info;
     font-style: italic;
     font-size: 1em;
-    animation-name: devui-loading-children;
+    animation-name: vxe-loading-children;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
-  @keyframes devui-loading-children {
+  @keyframes vxe-loading-children {
     0% {
       color: lighten($keyframe-blue, 0.95);
     }
@@ -289,60 +303,60 @@ $keyframe-blue: #5e7ce0;
   }
 
   svg.svg-icon path {
-    fill: $devui-icon-text;
+    fill: $vxe-icon-text;
   }
 
   svg.svg-icon rect {
-    stroke: $devui-icon-text;
+    stroke: $vxe-icon-text;
   }
 
-  &.#{$devui-prefix}-tree__node--open:not(.#{$devui-prefix}-tree-node__customIcon) {
-    & > .#{$devui-prefix}-tree__node-content svg.svg-icon path {
-      fill: $devui-icon-fill-active;
+  &.#{$vxe-prefix}-tree__node--open:not(.#{$vxe-prefix}-tree-node__customIcon) {
+    & > .#{$vxe-prefix}-tree__node-content svg.svg-icon path {
+      fill: $vxe-icon-fill-active;
     }
 
-    & > .#{$devui-prefix}-tree__node-content svg.svg-icon rect {
-      stroke: $devui-icon-fill-active;
+    & > .#{$vxe-prefix}-tree__node-content svg.svg-icon rect {
+      stroke: $vxe-icon-fill-active;
     }
 
-    & > .#{$devui-prefix}-tree__node-content svg.svg-icon.svg-icon-close rect:last-child {
+    & > .#{$vxe-prefix}-tree__node-content svg.svg-icon.svg-icon-close rect:last-child {
       stroke: none;
-      fill: $devui-icon-fill-active;
+      fill: $vxe-icon-fill-active;
     }
   }
 
   svg.svg-icon.svg-icon-close rect:last-child {
     stroke: none;
-    fill: $devui-icon-text;
+    fill: $vxe-icon-text;
   }
 }
 
-::ng-deep .#{$devui-prefix}-tree-mask {
-  background: $devui-list-item-hover-bg;
+::ng-deep .#{$vxe-prefix}-tree-mask {
+  background: $vxe-list-item-hover-bg;
 }
 
 /* 视觉融合灰线 */
-.#{$devui-prefix}-tree__node.#{$devui-prefix}-tree-without-virtual-scroll {
-  &.#{$devui-prefix}-tree__node--open {
-    & > .#{$devui-prefix}-tree__node-content {
+.#{$vxe-prefix}-tree__node.#{$vxe-prefix}-tree-without-virtual-scroll {
+  &.#{$vxe-prefix}-tree__node--open {
+    & > .#{$vxe-prefix}-tree__node-content {
       position: relative;
     }
   }
 
-  & > .#{$devui-prefix}-tree-node__children {
+  & > .#{$vxe-prefix}-tree-node__children {
     position: relative;
 
     &::before {
       content: '';
       width: 1px;
       height: calc(100% - 15px); // 父级总高度减去半个content的高度
-      background-color: $devui-dividing-line;
+      background-color: $vxe-dividing-line;
       position: absolute;
       left: calc(10px - 1px); // 父级10px的padding减去自身1px宽度
       top: 0;
     }
 
-    .#{$devui-prefix}-tree__node-content {
+    .#{$vxe-prefix}-tree__node-content {
       // 只要是子级就都存在左边横线
       position: relative;
 
@@ -350,7 +364,7 @@ $keyframe-blue: #5e7ce0;
         content: '';
         width: 8px;
         height: 1px;
-        background-color: $devui-dividing-line;
+        background-color: $vxe-dividing-line;
         position: absolute;
         left: calc(-1px - 8px); // 对接左侧灰线，自身margin为1.2em加上1px的线宽
         top: 50%;
@@ -359,15 +373,15 @@ $keyframe-blue: #5e7ce0;
   }
 }
 
-.#{$devui-prefix}-tree-vertical-line {
+.#{$vxe-prefix}-tree-vertical-line {
   width: 1px;
-  background-color: $devui-dividing-line;
+  background-color: $vxe-dividing-line;
   position: absolute;
 }
 
-.#{$devui-prefix}-tree-horizontal-line {
+.#{$vxe-prefix}-tree-horizontal-line {
   height: 1px;
-  background-color: $devui-dividing-line;
+  background-color: $vxe-dividing-line;
   position: absolute;
   top: 50%;
   margin-left: -16px;
@@ -377,53 +391,53 @@ $keyframe-blue: #5e7ce0;
   cursor: not-allowed !important;
 
   svg.svg-icon rect {
-    stroke: $devui-disabled-text !important;
+    stroke: $vxe-disabled-text !important;
   }
 
   svg.svg-icon.svg-icon-close rect:last-child {
     stroke: none !important;
-    fill: $devui-disabled-text !important;
+    fill: $vxe-disabled-text !important;
   }
 
   svg.svg-icon path {
-    fill: $devui-disabled-text !important;
+    fill: $vxe-disabled-text !important;
   }
 }
 
 .select-disabled {
-  color: $devui-disabled-text !important;
+  color: $vxe-disabled-text !important;
   cursor: not-allowed !important;
   background-color: transparent !important;
 }
 
-.#{$devui-prefix}-tree__node {
+.#{$vxe-prefix}-tree__node {
   font-size: 0;
 }
 
-.#{$devui-prefix}-tree__node,
-.#{$devui-prefix}-tree__node-content {
+.#{$vxe-prefix}-tree__node,
+.#{$vxe-prefix}-tree__node-content {
   position: relative;
 }
 
-.#{$devui-prefix}-tree__node-vline {
+.#{$vxe-prefix}-tree__node-vline {
   width: 1px;
-  background-color: $devui-dividing-line;
+  background-color: $vxe-dividing-line;
   position: absolute;
 }
 
-.#{$devui-prefix}-tree__node-hline {
+.#{$vxe-prefix}-tree__node-hline {
   width: 9px;
   height: 1px;
-  background-color: $devui-dividing-line;
+  background-color: $vxe-dividing-line;
   position: absolute;
   left: -15px;
   top: 50%;
 }
 
-.#{$devui-prefix}-tree__node-operation-area {
+.#{$vxe-prefix}-tree__node-operation-area {
   margin-left: 8px;
 
-  .devui-icon__container {
+  .vxe-icon__container {
     margin-left: 8px;
 
     &:first-child {
@@ -436,7 +450,7 @@ $keyframe-blue: #5e7ce0;
   }
 }
 
-.#{$devui-prefix}-tree--list {
+.#{$vxe-prefix}-tree--list {
   &-enter-active,
   &-leave-active {
     transition: opacity 0.3s cubic-bezier(0.5, 0.05, 0.5, 0.95), height 0.3s cubic-bezier(0.5, 0.05, 0.5, 0.95);

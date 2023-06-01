@@ -1,0 +1,13 @@
+$vxe-brand: var(--vxe-brand, #5e7ce0);                           // 品牌色
+$vxe-border-radius: var(--vxe-border-radius, 4px); //一般圆角
+$vxe-list-item-selected-bg:  var(--vxe-list-item-selected-bg, #f2f5fc);
+$vxe-danger: var(--vxe-danger, #f66f6a);                         // 失败、错误、告警
+$vxe-font-size-icon: var(--vxe-font-size-icon, 16px); //图标大小
+$vxe-icon-fill-active: var(--vxe-icon-fill-active, #5e7ce0);             // svg图标 高亮填充色（激活状态）
+$vxe-info: var(--vxe-info, #5e7ce0);                             // 通知、一般提示、执行中
+$vxe-icon-text: var(--vxe-icon-text, #252b3a);                           // 文字图标颜色，同 正文颜色
+$vxe-list-item-hover-bg: var(--vxe-list-item-hover-bg, #f2f2f3);                         // 列表类型普通选项悬停背景
+$vxe-dividing-line: var(--vxe-dividing-line, #dfe1e6);           // 内容分割线，用于内容之间的分割
+$vxe-disabled-text: var(--vxe-dividing-line, #dfe1e6);           // 内容分割线，用于内容之间的分割
+$vxe-text-weak: var(--vxe-text-weak, #575d6c);                   // 弱化的正文信息（手风琴子项，表头）
+$vxe-font-size: var(--vxe-font-size, 14px); //正文、卡片副标题

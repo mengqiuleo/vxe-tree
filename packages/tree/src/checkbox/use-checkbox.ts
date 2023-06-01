@@ -1,4 +1,4 @@
-import { computed, inject, toRef, provide, watch } from 'vue';
+import { computed, inject, toRef, provide } from 'vue';
 import type { SetupContext, Ref } from 'vue';
 // import { FORM_TOKEN, FORM_ITEM_TOKEN } from '../../form';
 import {
@@ -24,7 +24,6 @@ export function useCheckbox(props: CheckboxProps, ctx: SetupContext): UseCheckbo
     return !!max && checkboxGroupConf?.modelValue.value.length >= max && !mergedChecked.value;
   });
   const mergedDisabled = computed(() => {
-    // return checkboxGroupConf?.disabled.value || props.disabled || formContext?.disabled || isLimitDisabled.value;
     return checkboxGroupConf?.disabled.value || props.disabled || isLimitDisabled.value;
   });
   const mergedIsShowTitle = computed(() => {
@@ -66,13 +65,12 @@ export function useCheckbox(props: CheckboxProps, ctx: SetupContext): UseCheckbo
     canChange(!isChecked.value, props.label).then((res) => res && toggle());
   };
 
-  // const size = computed(() => props.size || checkboxGroupConf?.size.value || formContext?.size || 'md');
   const size = computed(() => props.size || checkboxGroupConf?.size.value || 'md');
 
   const border = computed(() => checkboxGroupConf?.border.value ?? props.border);
 
   // watch(
-  //   () => props.modelValue
+  //   () => props.modelValue,
   //   () => {
   //     formItemContext?.validate('change').catch((err) => console.warn(err));
   //   }
@@ -146,8 +144,7 @@ export function useCheckboxGroup(props: CheckboxGroupProps, ctx: SetupContext): 
   // );
 
   // 组件 size 优先于表单 size
-  // const checkboxGroupSize = computed(() => props.size || formContext?.size || '');
-  const checkboxGroupSize = computed(() => props.size || '');
+  const checkboxGroupSize = computed(() => props.size  || '');
 
   provide(checkboxGroupInjectionKey, {
     disabled: toRef(props, 'disabled'),

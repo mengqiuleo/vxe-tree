@@ -11,9 +11,9 @@ $checkbox-width-map: (
   sm: 14px,
 );
 $checkbox-label-height-map: (
-  lg: $devui-size-lg,
-  md: $devui-size-md,
-  sm: $devui-size-sm,
+  lg: 18px,
+  md: 16px,
+  sm: 14px
 );
 .#{$devui-prefix}-checkbox {
   position: relative;
