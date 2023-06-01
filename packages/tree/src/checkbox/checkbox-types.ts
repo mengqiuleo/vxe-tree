@@ -138,14 +138,6 @@ export const checkboxGroupInjectionKey: InjectionKey<checkboxGroupInjection> = S
 
 export type UseCheckboxFn = {
   mergedChecked: ComputedRef<boolean>;
-  mergedDisabled: ComputedRef<boolean>;
-  mergedIsShowTitle: ComputedRef<boolean | undefined>;
-  mergedShowAnimation: ComputedRef<boolean>;
-  mergedColor: ComputedRef<string | undefined>;
-  itemWidth: number | undefined;
-  direction: string | undefined;
-  size: ComputedRef<string>;
-  border: ComputedRef<boolean>;
   handleClick: (event: Event) => void;
 };
 
@@ -157,10 +149,3 @@ export interface GroupDefaultOpt {
   disabled: boolean;
 }
 
-export type UseCheckboxGroupFn = {
-  defaultOpt: GroupDefaultOpt;
-};
-
-export type UseCheckboxButtonFn = {
-  mergedTextColor: ComputedRef<string | undefined>;
-};

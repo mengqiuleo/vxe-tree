@@ -1,6 +1,4 @@
-// @import '../styles-var/devui-var.scss';
-
-@import '../styles-var/basic.scss';
+@import './basic.scss';
 @import './tree-var.scss';
 
 $vxe-prefix: vxe;
@@ -102,12 +100,10 @@ $keyframe-blue: #5e7ce0;
     width: 100%;
     border-radius: $vxe-border-radius;
     padding-left: 6px;
-    // background-color: #5e7ce0;
     cursor: pointer;
 
     &.active {
       background-color: $vxe-list-item-selected-bg;
-      // background-color: #5e7ce0;
       text-decoration: none;
       border-color: transparent;
     }
@@ -115,7 +111,6 @@ $keyframe-blue: #5e7ce0;
     &:not(.active):hover {
       transition: background-color 0.5s;
       background-color: $vxe-list-item-hover-bg;
-      // background-color: red;
     }
   }
 
@@ -125,14 +120,11 @@ $keyframe-blue: #5e7ce0;
     height: 30px;
     overflow: hidden;
 
-    .#{$vxe-prefix}-checkbox {
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      margin: 0;
-    }
-
+    // .#{$vxe-prefix}-tree__checkbox-wrapper {
+    //   position: relative;
+    //   margin-left: 6px;
+    // }
+    
     .#{$vxe-prefix}-tree__node-loading {
       margin-left: 50px;
 
@@ -218,6 +210,7 @@ $keyframe-blue: #5e7ce0;
     font-size: $vxe-font-size-icon;
     height: 16px;
     line-height: 16px;
+    margin-right: 8px;
 
     .#{$vxe-prefix}-tree-node__folder--icon {
       display: inline-block;
@@ -248,7 +241,7 @@ $keyframe-blue: #5e7ce0;
     display: inline-block;
     width: 16px;
     height: 16px;
-    margin-left: 8px;
+    margin-left: 1px;
   }
 
   .#{$vxe-prefix}-loading-children {

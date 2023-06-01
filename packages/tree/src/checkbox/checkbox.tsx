@@ -1,4 +1,4 @@
-import { defineComponent, SetupContext } from 'vue';
+import { defineComponent, SetupContext, StyleValue } from 'vue';
 import { checkboxProps, CheckboxProps } from './checkbox-types';
 import { useNamespace } from '../shared/use-namespace';
 import { useCheckbox } from './use-checkbox';
@@ -12,73 +12,49 @@ export default defineComponent({
     const ns = useNamespace('checkbox');
     const {
       mergedChecked,
-      mergedDisabled,
-      mergedIsShowTitle,
-      mergedShowAnimation,
-      mergedColor,
-      itemWidth,
-      direction,
       handleClick,
-      size,
-      border,
     } = useCheckbox(props, ctx);
 
     return () => {
       const wrapperCls = {
-        [ns.e('column-margin')]: direction === 'column',
-        [ns.e('wrap')]: typeof itemWidth !== 'undefined',
+        [ns.e('column-margin')]: 'column',
       };
-      const wrapperStyle = itemWidth ? [`width: ${itemWidth}px`] : [];
+      const wrapperStyle: StyleValue | undefined = [];
       const checkboxCls = {
         [ns.b()]: true,
         active: mergedChecked.value,
         'half-checked': props.halfChecked,
-        disabled: mergedDisabled.value,
+        disabled: props.disabled,
         unchecked: !mergedChecked.value,
       };
-      const labelTitle = mergedIsShowTitle.value ? props.title || props.label : '';
+
       const bgImgStyle =
-        (mergedColor.value && props.halfChecked) || mergedColor.value ? `linear-gradient(${mergedColor.value}, ${mergedColor.value})` : '';
+        (props.color && props.halfChecked) || props.color ? `linear-gradient(${props.color})` : '';
       const spanStyle = [
-        `border-color:${(mergedChecked.value || props.halfChecked) && mergedColor.value ? mergedColor.value : ''}`,
+        `border-color:${(props.color|| props.halfChecked) && props.color ? props.color : ''}`,
         `background-image:${bgImgStyle}`,
-        `background-color:${mergedColor.value && props.halfChecked ? mergedColor.value : ''}`,
+        `background-color:${props.color && props.halfChecked ? props.color : ''}`,
       ];
       const spanCls = {
         [ns.e('material')]: true,
-        'custom-color': mergedColor.value,
+        'custom-color': props.color,
         [ns.m('no-label')]: !props.label && !ctx.slots.default,
-        [ns.m('no-animation')]: !mergedShowAnimation.value,
+        [ns.m('no-animation')]: !props.showAnimation,
         [ns.e('default-background')]: !props.halfChecked,
       };
       const polygonCls = {
         [ns.e('tick')]: true,
-        [ns.m('no-animation')]: !mergedShowAnimation.value,
+        [ns.m('no-animation')]: !props.showAnimation,
       };
       const labelCls = {
-        [ns.m(size.value)]: size.value,
-        [ns.m('bordered')]: border.value,
-      };
-      const stopPropagation = ($event: Event) => $event.stopPropagation();
-
-      const inputProps = {
-        indeterminate: props.halfChecked,
+        [ns.m('md')]: 'md',
+        [ns.m('bordered')]: props.border
       };
 
       return (
-        <div class={wrapperCls} style={wrapperStyle}>
+        <div  style={wrapperStyle}>
           <div class={checkboxCls}>
-            <label title={labelTitle} onClick={handleClick} class={labelCls} style={{ width: itemWidth ? '100%' : 'auto' }}>
-              <input
-                name={(props.name || props.value) as string}
-                class={ns.e('input')}
-                type="checkbox"
-                {...inputProps}
-                checked={mergedChecked.value}
-                disabled={mergedDisabled.value}
-                onClick={stopPropagation}
-                onChange={stopPropagation}
-              />
+            <label onClick={handleClick} class={labelCls} style={{ width: 'auto' }}>
               <span style={spanStyle} class={spanCls}>
                 <span class={ns.e('halfchecked-bg')}></span>
                 <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" class={ns.e('tick-wrap')}>
@@ -90,7 +66,6 @@ export default defineComponent({
                   </g>
                 </svg>
               </span>
-              <span class={ns.e('label-text')}>{props.label || ctx.slots.default?.()}</span>
             </label>
           </div>
         </div>

@@ -1,10 +1,9 @@
-import { defineComponent, getCurrentInstance } from 'vue';
+import { defineComponent } from 'vue';
 import { useNamespace } from '../../shared/use-namespace';
 
 export default defineComponent({
   name: 'DTreeNodeLoading',
   setup() {
-    const app = getCurrentInstance();
     const ns = useNamespace('loading-children ');
 
     return () => {

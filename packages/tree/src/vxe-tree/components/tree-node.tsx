@@ -5,20 +5,16 @@ import { treeNodeProps, TreeNodeProps } from '../tree-types';
 import { IInnerTreeNode, IUseTree, useTreeNode } from '../composables';
 import VTreeNodeToggle from './tree-node-toggle';
 import VTreeNodeLoading from './tree-node-loading';
-import  Checkbox  from '../../checkbox-disuse/checkbox';
-// import { IconCheckBox } from './icon-checkbos';
+import  Checkbox  from '../../checkbox/checkbox';
 import VTreeNodeContent from './tree-node-content';
 import { useNamespace } from '../../shared/use-namespace';
 import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
-// import { createI18nTranslate } from '../../../locale/create';
 
 export default defineComponent({
   name: 'DTreeNode',
   props: treeNodeProps,
   setup(props: TreeNodeProps, { slots }) {
-
-    // const t = createI18nTranslate('DTree', app);
 
     const { data, check, dragdrop, operate } = toRefs(props);
     const {
@@ -69,7 +65,7 @@ export default defineComponent({
         },
         onClick: (event: MouseEvent) => {
           event.stopPropagation();
-        },
+        }
       };
     });
 
@@ -121,7 +117,7 @@ export default defineComponent({
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <VTreeNodeToggle data={data.value} />}
             
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
-              {check.value && <Checkbox {...checkboxProps.value} />}
+              {check.value && <Checkbox class={ns.e('checkbox-wrapper')}  {...checkboxProps.value} />}
               {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <VTreeNodeContent data={data.value} />}
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
               {dragdrop.value && (
