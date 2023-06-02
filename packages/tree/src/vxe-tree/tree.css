@@ -26,6 +26,13 @@
   position: absolute;
 }
 
+.vxe-tree__menu {
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  z-index: 9999;
+}
+
 .vxe-tree__node {
   height: 30px;
   color: var(--vxe-text-weak, #575d6c);

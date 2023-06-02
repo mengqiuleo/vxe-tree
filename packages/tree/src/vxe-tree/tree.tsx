@@ -14,6 +14,7 @@ import {
   IInnerTreeNode,
   ICheckStrategy,
   useDragdrop,
+  useContextMenu
 } from './composables';
 import { USE_TREE_TOKEN, NODE_HEIGHT, TREE_INSTANCE } from './const';
 import { TreeProps, treeProps } from './tree-types';
@@ -24,17 +25,17 @@ import './tree.scss';
 export default defineComponent({
   name: 'vxe-tree',
   props: treeProps,
-  emits: ['toggle-change', 'check-change', 'select-change', 'node-click', 'lazy-load'],
+  emits: ['toggle-change', 'check-change', 'select-change', 'node-click', 'lazy-load', 'node-contextmenu'],
   // @ts-ignore
   setup(props: TreeProps, context: SetupContext) {
     const { slots, expose } = context;
     const treeInstance = getCurrentInstance();
-    const { check, dragdrop, operate, showLine, checkboxPlaceRight } = toRefs(props);
+    const { check, dragdrop, operate, showLine, checkboxPlaceRight, showContextMenu } = toRefs(props);
     const ns = useNamespace('tree');
     const normalRef = ref();
     const data = ref<IInnerTreeNode[]>(formatBasicTree(props.data));//# 这里并没有拍平，只是对用户传入的数据进行属性补全
 
-    const userPlugins = [useSelect(), useOperate(), useMergeNodes(), useSearchFilter()];
+    const userPlugins = [useSelect(), useOperate(), useMergeNodes(), useSearchFilter(), useContextMenu()];
 
     const checkOptions = ref<{ checkStrategy: ICheckStrategy }>({ //'upward' | 'downward' | 'both' | 'none';
       checkStrategy: formatCheckStatus(check.value),
@@ -85,7 +86,7 @@ export default defineComponent({
           nodeData: treeNode,
         })
       ) : (
-        <VTreeNode data={treeNode} showLine={showLine.value} checkboxPlaceRight={checkboxPlaceRight.value} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
+        <VTreeNode data={treeNode} showContextMenu={showContextMenu.value} showLine={showLine.value} checkboxPlaceRight={checkboxPlaceRight.value} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
           {/* 这里是三个具名插槽，通过 content，icon，loading 来控制 */}
           {{
             default: () =>
@@ -93,6 +94,7 @@ export default defineComponent({
             icon: () =>
               slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: treeNode, toggleNode }) : <VTreeNodeToggle data={treeNode} />,
             loading: () => (slots.loading ? renderSlot(useSlots(), 'loading', { nodeData: treeNode }) : <VTreeNodeLoading />),
+            contextmenu: () => (slots.contextmenu && showContextMenu.value) && renderSlot(useSlots(), 'contextmenu', {nodeData: treeNode})
           }}
         </VTreeNode>
       );

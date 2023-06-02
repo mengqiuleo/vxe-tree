@@ -17,6 +17,13 @@ $keyframe-blue: #5e7ce0;
   position: absolute;
 }
 
+.#{$vxe-prefix}-tree__menu {
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  z-index: 9999;
+}
+
 .#{$vxe-prefix}-tree__node {
   height: 30px;
   color: $vxe-text-weak;

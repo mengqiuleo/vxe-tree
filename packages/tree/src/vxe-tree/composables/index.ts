@@ -13,3 +13,4 @@ export * from './utils';
 export * from './use-tree';
 export * from './use-tree-node';
 export * from './use-tree-types';
+export * from './use-contextmenu';

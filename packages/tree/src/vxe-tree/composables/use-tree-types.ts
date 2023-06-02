@@ -14,6 +14,7 @@ export interface ITreeNode {
   disableCheck?: boolean;
   disableToggle?: boolean;
   isLeaf?: boolean;
+  nodeContextMenu?: boolean; 
 }
 
 // 内部数据结构使用扁平结构
@@ -31,6 +32,7 @@ export interface IInnerTreeNode extends ITreeNode {
   childrenMatched?: boolean; // 搜索过滤时是否有子节点存在匹配
   isHide?: boolean; // 过滤后是否不显示该节点
   matchedText?: string; // 节点匹配的文字（需要高亮显示）
+  nodeContextMenu?: boolean; //右键事件
 }
 
 export type valueof<T> = T[keyof T];
@@ -135,6 +137,8 @@ export type IShowLine = boolean;
 
 export type ICheckboxPlaceRight = boolean;
 
+export type IShowContextMenu = boolean | string;
+
 export type IDragdrop = boolean | IDropType;
 
 export type IOperateItem = 'add' | 'delete' | 'edit';
@@ -166,6 +170,11 @@ export interface IDropNode {
   item: ITreeNode;
 }
 
+export interface IContextMenu {
+  nodeContextMenu: (node: IInnerTreeNode) => void;
+  closeMenu: (node: IInnerTreeNode) => void;
+}
+
 export type IUseTree = {
   treeData: Ref<IInnerTreeNode[]>;
 } & IUseCore &
@@ -177,4 +186,5 @@ IUseOperate &
 IUseMergeNodes &
 IUseLazyLoad &
 IUseSearchFilter &
-IUseDraggable;
+IUseDraggable &
+IContextMenu;

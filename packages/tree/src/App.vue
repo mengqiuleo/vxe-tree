@@ -77,12 +77,23 @@ const toggleChange = (node: any) => {
   console.log('toggleChange node:', node);
 };
 
+const contextMenu = (node: any) => {
+  console.log('contextMenu', node)
+}
 
 </script>
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" check operate   @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }"></vxeTree>
+    <vxeTree class="mb-2" :data="data" check :show-contextMenu="true" @node-contextmenu="contextMenu"   @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }">
+      <template #contextmenu="{ nodeData }">
+        <div  class="menu">
+          <div>{{ nodeData.label }}</div>
+          <div>{{ nodeData.id  }}</div>
+          <div>delete</div>
+        </div>
+      </template>
+    </vxeTree>
 
   </div>
 </template>
@@ -90,5 +101,11 @@ const toggleChange = (node: any) => {
 <style scoped>
 .container {
   width: 500px;
+}
+.menu{
+  background-color: #dfe1e6;
+  width: 100px;
+  height: 80px;
+  border-radius: 4px;
 }
 </style>
