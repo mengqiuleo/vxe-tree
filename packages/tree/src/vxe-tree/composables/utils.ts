@@ -3,11 +3,14 @@ import { IInnerTreeNode, ITreeNode } from './use-tree-types';
 import omit from '../../shared/omit'
 import { randomId } from '../../shared/randomId'
 
+interface ITreeMap {
+  [id: string]: ITreeNode;
+}
 
 export function flatToNested(flatTree: IInnerTreeNode[]): ITreeNode[] {
-  const treeMap = {};
+  const treeMap: ITreeMap = {};
   return flatTree.reduce((acc: ITreeNode[], cur: IInnerTreeNode) => {
-    const { id, parentId } = cur;
+    const { id, parentId = '' } = cur;
 
     if (!treeMap[id]) {
       treeMap[id] = {
@@ -19,7 +22,7 @@ export function flatToNested(flatTree: IInnerTreeNode[]): ITreeNode[] {
     if (!treeMap[parentId]) {
       acc.push(treeMap[id]);
     } else {
-      treeMap[parentId].children.push(treeMap[id]);
+      treeMap[parentId].children!.push(treeMap[id]);
     }
 
     return acc;
@@ -55,7 +58,7 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
     }
 
     if (newItem.selected) {
-      setInitSelectedNode(newItem);
+      setInitSelectedNode(newItem as IInnerTreeNode);
     }
 
     newItem.level = level;
@@ -69,7 +72,7 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
       }
     }
 
-    path.push(newItem);
+    path.push(newItem as IInnerTreeNode);
 
     const parentNode = path[path.length - 2];
     if (parentNode) {

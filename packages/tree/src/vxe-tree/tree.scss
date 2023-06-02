@@ -24,6 +24,7 @@ $keyframe-blue: #5e7ce0;
   white-space: nowrap;
   position: relative;
 
+  // 拖拽样式
   &--drop {
     &-inner {
       .#{$vxe-prefix}-tree__node {

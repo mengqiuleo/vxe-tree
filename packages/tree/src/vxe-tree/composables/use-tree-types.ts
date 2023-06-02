@@ -143,17 +143,17 @@ export interface LazyNodeResult {
 }
 
 export interface DragState {
-  dropType?: keyof Required<IDropType>;
-  draggingNode?: HTMLElement | null;
-  draggingTreeNode?: IInnerTreeNode | null;
+  dropType?: keyof Required<IDropType>; //拖拽类型，是dropPrev，dropNext，dropInner
+  draggingNode?: HTMLElement | null; //正在拖拽的节点，就是html元素
+  draggingTreeNode?: IInnerTreeNode | null; //正在交互的数据节点，我们的treenode数据
 }
 
 export interface IUseDraggable {
-  onDragstart: (event: DragEvent, treeNode: IInnerTreeNode) => void;
-  onDragover: (event: DragEvent) => void;
-  onDragleave: (event: DragEvent) => void;
-  onDrop: (event: DragEvent, dropNode: IInnerTreeNode) => void;
-  onDragend: (event: DragEvent) => void;
+  onDragstart: (event: DragEvent, treeNode: IInnerTreeNode) => void; //拖拽开始， treeNode是我们操作的哪个节点
+  onDragover: (event: DragEvent) => void; //晃来晃去，记录相对位置，进入某个节点
+  onDragleave: (event: DragEvent) => void; //与 onDragleave 相反，离开某个结点
+  onDrop: (event: DragEvent, dropNode: IInnerTreeNode) => void; //拖拽结束
+  onDragend: (event: DragEvent) => void; //结束后的清理工作
 }
 
 export interface IDropNode {

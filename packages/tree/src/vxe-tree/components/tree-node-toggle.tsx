@@ -1,6 +1,6 @@
 import { defineComponent, inject, PropType, toRefs } from 'vue';
 import { USE_TREE_TOKEN } from '../const';
-import { ITreeNode, IUseTree } from '../composables';
+import { IInnerTreeNode, IUseTree } from '../composables';
 import { IconClose } from './icon-close';
 import { IconOpen } from './icon-open';
 import { useNamespace } from '../../shared/use-namespace';
@@ -9,7 +9,7 @@ export default defineComponent({
   name: 'DTreeNodeToggle',
   props: {
     data: {
-      type: Object as PropType<ITreeNode>,
+      type: Object as PropType<IInnerTreeNode>,
       default: () => ({}),
     },
   },

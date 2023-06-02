@@ -73,7 +73,7 @@ const data = ref([
   },
 ]);
 
-const toggleChange = (node) => {
+const toggleChange = (node: any) => {
   console.log('toggleChange node:', node);
 };
 
@@ -82,7 +82,7 @@ const toggleChange = (node) => {
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" operate  @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }"></vxeTree>
+    <vxeTree class="mb-2" :data="data" check operate  @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }"></vxeTree>
 
   </div>
 </template>

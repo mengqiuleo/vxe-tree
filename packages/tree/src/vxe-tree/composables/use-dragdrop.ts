@@ -2,7 +2,7 @@ import { reactive, computed } from 'vue';
 import type { Ref } from 'vue';
 import type { TreeProps } from '../tree-types';
 import type { DragState, IUseDraggable, IDropNode, IInnerTreeNode, ITreeNode, IDropType } from './use-tree-types';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash';
 import { useNamespace } from '../../shared/use-namespace';
 import { formatBasicTree } from '../utils';
 
@@ -17,9 +17,9 @@ const dropTypeMap = {
 export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
   return function useDragdropFn(): IUseDraggable {
     const dragState = reactive<DragState>({
-      dropType: undefined,
-      draggingNode: null,
-      draggingTreeNode: null,
+      dropType: undefined,//拖拽类型，是dropPrev，dropNext，dropInner
+      draggingNode: null,//正在拖拽的节点，就是html元素
+      draggingTreeNode: null,//正在交互的数据节点，我们的treenode数据
     });
 
     const treeIdMapValue = computed<Record<string | number, IInnerTreeNode>>(() => {
@@ -27,12 +27,6 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
         ...acc, [cur.id]: cur,
       }), {});
     });
-
-    const removeDraggingStyle = (target: HTMLElement | null) => {
-      target
-        ?.classList
-        .remove(...Object.values(dropTypeMap));
-    };
 
     const checkIsParent = (childNodeId: number | string, parentNodeId: number | string): boolean => {
       const realParentId = treeIdMapValue.value[childNodeId]?.parentId;
@@ -45,8 +39,15 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       }
     };
 
+    const removeDraggingStyle = (target: HTMLElement | null) => {
+      target
+        ?.classList
+        .remove(...Object.values(dropTypeMap));
+    };
+
+    //拖拽时真正处理数据的地方：参数一：拖拽节点，参数二：释放节点（目标节点）
     const handlerDropData = (dragNodeId: string | number, dropNodeId: string | number, currentDropType?: string) => {
-      const cloneData = cloneDeep(data.value);
+      const cloneData = cloneDeep(data.value);//将所有的节点数据备份，我们需要找到拖拽节点和目标接节点，因为有可能用户把拖拽节点扔出去了
       let currentDragNode: IDropNode | undefined;
       let currentDropNode: IDropNode | undefined;
       const findDragAndDropNode = (curr: ITreeNode[]) => {
@@ -70,7 +71,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       };
       findDragAndDropNode(cloneData);
       if (currentDragNode && currentDropNode && currentDropType) {
-        const cloneDrapNode = Object.assign({}, currentDragNode.target[currentDragNode.index]);
+        const cloneDrapNode = Object.assign({}, currentDragNode.target[currentDragNode.index]);//备份当前克隆节点
         if (currentDropType === 'dropPrev') {
           currentDropNode.target.splice(currentDropNode.index, 0, cloneDrapNode);
         } else if (currentDropType === 'dropNext') {
@@ -98,15 +99,16 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       dragState.draggingTreeNode = null;
     };
 
+    //* 1. 拖拽开始
     const onDragstart = (event: DragEvent, treeNode: IInnerTreeNode): void => {
       event.stopPropagation();
-      dragState.draggingNode = event.target as HTMLElement | null;
+      dragState.draggingNode = event.target as HTMLElement | null; //记录信息，记录拖拽节点
       dragState.draggingTreeNode = treeNode;
       const treeInfo = {
         type: 'tree-node',
         nodeId: treeNode.id,
       };
-      // 1. 是否成功设置treeInfo
+      // 将正在拖拽的数据节点存入 dataTransfer（主要是存 id）, 未来需要在 drop 的时候取出
       event.dataTransfer?.setData('Text', JSON.stringify(treeInfo));
     };
 
@@ -170,6 +172,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       removeDraggingStyle(event.currentTarget as HTMLElement | null);
     };
 
+    //* 2. 拖拽释放
     const onDrop = (event: DragEvent, dropNode: IInnerTreeNode): void => {
       event.preventDefault();
       event.stopPropagation();
@@ -177,14 +180,15 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       if (!dragState.draggingNode) { return; }
       if (!props.dragdrop) { return; }
 
+      // 获取正在拖拽的节点信息，刚才在 onDragstart 中存了
       const treeInfoStr = event.dataTransfer?.getData('Text');
       if (treeInfoStr) {
         try {
           const treeInfo = JSON.parse(treeInfoStr);
           if (typeof treeInfo === 'object' && treeInfo.type === 'tree-node') {
-            const dragNodeId = treeInfo.nodeId;
+            const dragNodeId = treeInfo.nodeId;//我们拖拽的节点
             const isParent = checkIsParent(dropNode.id, dragNodeId);
-            if (dragNodeId === dropNode.id || isParent) {
+            if (dragNodeId === dropNode.id || isParent) { //判断释放节点是否是拖拽节点的子节点（也就是说我们把一个父节点放到了它的子节点中），这是不合法的，或者是同一节点，相当于没有拖拽，也不行的
               return;
             }
             if (dragState.dropType) {
@@ -200,6 +204,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       }
     };
 
+    //清理工作，不用理会
     const onDragend = (event: DragEvent) => {
       event.preventDefault();
       event.stopPropagation();

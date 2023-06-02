@@ -29,7 +29,7 @@ export default defineComponent({
       };
 
       const bgImgStyle =
-        (props.color && props.halfChecked) || props.color ? `linear-gradient(${props.color})` : '';
+        (props.color && props.halfChecked) || props.color ? `linear-gradient(${props.color}, ${props.color})` : '';
       const spanStyle = [
         `border-color:${(props.color|| props.halfChecked) && props.color ? props.color : ''}`,
         `background-image:${bgImgStyle}`,
