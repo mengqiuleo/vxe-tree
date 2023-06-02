@@ -16,7 +16,8 @@ export default defineComponent({
   props: treeNodeProps,
   setup(props: TreeNodeProps, { slots }) {
 
-    const { data, check, dragdrop, operate } = toRefs(props);
+    const { data, check, dragdrop, operate, showLine, checkboxPlaceRight } = toRefs(props);
+    console.log('showline', showLine.value)
     const {
       toggleSelectNode,
       toggleCheckNode,
@@ -66,7 +67,7 @@ export default defineComponent({
         onClick: (event: MouseEvent) => {
           event.stopPropagation();
         },
-        color: 'red'
+        color: '#18a058'
       };
     });
 
@@ -101,10 +102,10 @@ export default defineComponent({
           onMouseleave={hideOperationArea}
         >
           {/* 连接线 */}
-          {nodeVLineStyles.value.map((item) => (
+          {showLine.value && nodeVLineStyles.value.map((item) => (
             <span class={nodeVLineClass.value} style={item}></span>
           ))}
-          <span class={nodeHLineClass.value} style={omit(nodeVLineStyles.value[0], ['height', 'top'])}></span>
+          {showLine.value && <span class={nodeHLineClass.value} style={omit(nodeVLineStyles.value[0], ['height', 'top'])}></span>}
 
           {/* 每个元素 */}
           <div
@@ -119,7 +120,7 @@ export default defineComponent({
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <VTreeNodeToggle data={data.value} />}
             
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
-              {check.value && <Checkbox class={ns.e('checkbox-wrapper')}  {...checkboxProps.value} />}
+              {(check.value && !checkboxPlaceRight.value) && <Checkbox class={ns.e('checkbox-wrapper')}  {...checkboxProps.value} />}
               {slots.default ? renderSlot(useSlots(), 'default', { nodeData: data }) : <VTreeNodeContent data={data.value} />}
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
               {dragdrop.value && (
@@ -149,7 +150,10 @@ export default defineComponent({
                 >delete</button>
               </div>
             )}
+          
+
           </div>
+          {(check.value && checkboxPlaceRight.value) && <Checkbox class={ns.e('checkbox-wrapper--right')}  {...checkboxProps.value} />}
         </div>
       );
     };

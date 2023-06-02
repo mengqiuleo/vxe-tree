@@ -131,6 +131,10 @@ export type ICheckStrategy = 'upward' | 'downward' | 'both' | 'none';
 
 export type ICheck = boolean | ICheckStrategy;
 
+export type IShowLine = boolean;
+
+export type ICheckboxPlaceRight = boolean;
+
 export type IDragdrop = boolean | IDropType;
 
 export type IOperateItem = 'add' | 'delete' | 'edit';

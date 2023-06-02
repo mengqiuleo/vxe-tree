@@ -125,6 +125,13 @@
   background: none;
 }
 
+.vxe-tree__node .vxe-tree__checkbox-wrapper--right {
+  display: inline-flex;
+  vertical-align: bottom;
+  height: 30px;
+  line-height: 1.5;
+}
+
 .vxe-tree__node .vxe-tree-node__children {
   padding-left: 10px;
 }

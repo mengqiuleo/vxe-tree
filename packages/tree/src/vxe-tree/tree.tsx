@@ -29,7 +29,7 @@ export default defineComponent({
   setup(props: TreeProps, context: SetupContext) {
     const { slots, expose } = context;
     const treeInstance = getCurrentInstance();
-    const { check, dragdrop, operate } = toRefs(props);
+    const { check, dragdrop, operate, showLine, checkboxPlaceRight } = toRefs(props);
     const ns = useNamespace('tree');
     const normalRef = ref();
     const data = ref<IInnerTreeNode[]>(formatBasicTree(props.data));//# 这里并没有拍平，只是对用户传入的数据进行属性补全
@@ -85,7 +85,7 @@ export default defineComponent({
           nodeData: treeNode,
         })
       ) : (
-        <VTreeNode data={treeNode} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
+        <VTreeNode data={treeNode} showLine={showLine.value} checkboxPlaceRight={checkboxPlaceRight.value} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
           {/* 这里是三个具名插槽，通过 content，icon，loading 来控制 */}
           {{
             default: () =>

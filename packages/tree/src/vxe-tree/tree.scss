@@ -120,11 +120,6 @@ $keyframe-blue: #5e7ce0;
     align-items: center;
     height: 30px;
     overflow: hidden;
-
-    // .#{$vxe-prefix}-tree__checkbox-wrapper {
-    //   position: relative;
-    //   margin-left: 6px;
-    // }
     
     .#{$vxe-prefix}-tree__node-loading {
       margin-left: 50px;
@@ -133,6 +128,13 @@ $keyframe-blue: #5e7ce0;
         background: none;
       }
     }
+  }
+
+  .#{$vxe-prefix}-tree__checkbox-wrapper--right {
+    display: inline-flex;
+    vertical-align: bottom;
+    height: 30px;
+    line-height: 1.5;
   }
 
   .#{$vxe-prefix}-tree-node__children {

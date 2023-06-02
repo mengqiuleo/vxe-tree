@@ -82,10 +82,13 @@ const toggleChange = (node: any) => {
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" check operate  @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }"></vxeTree>
+    <vxeTree class="mb-2" :data="data" check operate   @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }"></vxeTree>
 
   </div>
 </template>
 
 <style scoped>
+.container {
+  width: 500px;
+}
 </style>

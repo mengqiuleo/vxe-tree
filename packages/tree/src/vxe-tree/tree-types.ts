@@ -1,10 +1,10 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import type { ICheck, IOperate, ITreeNode, IDragdrop, IInnerTreeNode } from './composables/use-tree-types';
+import type { ICheck, IOperate, ITreeNode, IDragdrop, IShowLine, ICheckboxPlaceRight, IInnerTreeNode } from './composables/use-tree-types';
 
 const commonProps = {
   check: {
     type: [Boolean, String] as PropType<ICheck>,
-    default: false,
+    default: false
   },
   dragdrop: {
     type: [Boolean, Object] as PropType<IDragdrop>,
@@ -12,8 +12,16 @@ const commonProps = {
   },
   operate: {
     type: [Boolean, String, Array] as PropType<IOperate>,
-    default: false,
+    default: false
   },
+  showLine: {
+    type: [Boolean, String] as PropType<IShowLine>,
+    default: true
+  },
+  checkboxPlaceRight: {
+    type: [Boolean] as PropType<ICheckboxPlaceRight>,
+    default: false
+  }
 };
 
 export const treeProps = {
