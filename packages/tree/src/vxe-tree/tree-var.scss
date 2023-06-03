@@ -1,4 +1,24 @@
-$vxe-brand: var(--vxe-brand, #5e7ce0);                           // 品牌色
+$vxe-prefix: vxe;
+
+$keyframe-blue: #5e7ce0;
+
+
+:root {
+  --vxe-brand: #5e7ce0; //?CheckBox颜色
+  --vxe-border-radius: 4px;
+  --vxe-list-item-selected-bg: #f2f5fc; //?selected颜色
+  --vxe-danger: #f66f6a;
+  --vxe-font-size-icon: 16px;
+  --vxe-icon-fill-active: #5e7ce0;
+  --vxe-info: #5e7ce0;
+  --vxe-icon-text: #252b3a;
+  --vxe-list-item-hover-bg: #f2f2f3; //?hover颜色
+  --vxe-dividing-line: #dfe1e6;
+  --vxe-text-weak: #575d6c;
+  --vxe-font-size: 14px;
+}
+
+$vxe-brand: var(--vxe-brand, #5e7ce0);                           //* 品牌色(主要颜色)
 $vxe-border-radius: var(--vxe-border-radius, 4px); //一般圆角
 $vxe-list-item-selected-bg:  var(--vxe-list-item-selected-bg, #f2f5fc);
 $vxe-danger: var(--vxe-danger, #f66f6a);                         // 失败、错误、告警
@@ -6,7 +26,7 @@ $vxe-font-size-icon: var(--vxe-font-size-icon, 16px); //图标大小
 $vxe-icon-fill-active: var(--vxe-icon-fill-active, #5e7ce0);             // svg图标 高亮填充色（激活状态）
 $vxe-info: var(--vxe-info, #5e7ce0);                             // 通知、一般提示、执行中
 $vxe-icon-text: var(--vxe-icon-text, #252b3a);                           // 文字图标颜色，同 正文颜色
-$vxe-list-item-hover-bg: var(--vxe-list-item-hover-bg, #f2f2f3);                         // 列表类型普通选项悬停背景
+$vxe-list-item-hover-bg: var(--vxe-list-item-hover-bg, #f2f2f3);     //* 列表类型普通选项悬停背景(hover颜色)
 $vxe-dividing-line: var(--vxe-dividing-line, #dfe1e6);           // 内容分割线，用于内容之间的分割
 $vxe-disabled-text: var(--vxe-dividing-line, #dfe1e6);           // 内容分割线，用于内容之间的分割
 $vxe-text-weak: var(--vxe-text-weak, #575d6c);                   // 弱化的正文信息（手风琴子项，表头）

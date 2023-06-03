@@ -1,4 +1,4 @@
-$vxe-prefix: vxe;
+@import '../vxe-tree/tree-var.scss';
 
 $font-size-map: (
   md: 12px,
@@ -41,10 +41,10 @@ $checkbox-label-height-map: (
   &.active,
   &.half-checked {
     &:not(.disabled) .#{$vxe-prefix}-checkbox__material:not(.custom-color) {
-      border-color: #5e7ce0;
+      border-color: $vxe-brand;
     }
     .#{$vxe-prefix}-checkbox--bordered {
-      border-color: #5e7ce0;
+      border-color: $vxe-brand;
     }
   }
 
@@ -61,7 +61,7 @@ $checkbox-label-height-map: (
       transition: background-size 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
       &:hover {
-        border-color: #5e7ce0;
+        border-color: $vxe-brand;
       }
     }
   }
@@ -75,7 +75,7 @@ $checkbox-label-height-map: (
 
   &.half-checked {
     .#{$vxe-prefix}-checkbox__material:not(.custom-color) {
-      background-color: #5e7ce0;
+      background-color: $vxe-brand;
 
       & > .#{$vxe-prefix}-checkbox__halfchecked-bg {
         opacity: 1;
@@ -105,7 +105,7 @@ $checkbox-label-height-map: (
     user-select: none;
     border: 1px solid #adb0b8;
     border-radius: 2px;
-    background: linear-gradient(#5e7ce0, #5e7ce0) no-repeat 50%/0;
+    background: linear-gradient($vxe-brand, $vxe-brand) no-repeat 50%/0;
     margin-right: 8px;
     vertical-align: text-bottom;
 
@@ -141,7 +141,7 @@ $checkbox-label-height-map: (
       &:focus,
       &:active,
       &:hover {
-        background-color: #5e7ce0;
+        background-color: $vxe-brand;
       }
 
       // 激活状态深色

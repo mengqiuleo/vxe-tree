@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import vxeTree from './vxe-tree/tree';
+import vTree from './vxe-tree/tree';
 
 const data = ref([
   {
@@ -72,8 +72,8 @@ const treeRef = ref(null);
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" accordion ref="treeRef">
-    </vxeTree>
+    <vTree class="mb-2" :data="data" check accordion ref="treeRef">
+    </vTree>
 
   </div>
 </template>

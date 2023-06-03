@@ -69,8 +69,7 @@ export default defineComponent({
         },
         onClick: (event: MouseEvent) => {
           event.stopPropagation();
-        },
-        color: '#18a058'
+        }
       };
     });
 

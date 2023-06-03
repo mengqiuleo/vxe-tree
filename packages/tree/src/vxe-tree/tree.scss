@@ -1,9 +1,5 @@
-@import './basic.scss';
+// @import './basic.scss';
 @import './tree-var.scss';
-
-$vxe-prefix: vxe;
-
-$keyframe-blue: #5e7ce0;
 
 .#{$vxe-prefix}-text-ellipsis {
   text-overflow: ellipsis;
@@ -14,6 +10,7 @@ $keyframe-blue: #5e7ce0;
 .#{$vxe-prefix}-tree-indicator {
   height: 1px;
   background-color: $vxe-brand;
+
   position: absolute;
 }
 
