@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 import { useNamespace } from '../../shared/use-namespace';
 
 export default defineComponent({
-  name: 'DTreeNodeLoading',
+  name: 'VTreeNodeLoading',
   setup() {
     const ns = useNamespace('loading-children ');
 

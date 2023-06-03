@@ -2,7 +2,7 @@ import { ComputedRef, defineComponent, PropType, toRefs } from 'vue';
 import { IInnerTreeNode, useTreeNode } from '../composables';
 
 export default defineComponent({
-  name: 'DTreeNodeContent',
+  name: 'VTreeNodeContent',
   props: {
     data: {
       type: Object as PropType<IInnerTreeNode>,

@@ -1,6 +1,5 @@
-import { computed, ComputedRef, Ref, onUnmounted, ref } from 'vue';
+import { computed, ComputedRef, Ref, onUnmounted } from 'vue';
 import { IInnerTreeNode, ITreeNode, IUseCore, valueof } from './use-tree-types';
-import { TreeProps } from '../tree-types';
 import { generateInnerTree } from './utils';
 
 const DEFAULT_CONFIG = {
@@ -9,7 +8,7 @@ const DEFAULT_CONFIG = {
 };
 
 // useCore: 用于操作树形结构数据的工具函数库, data是拍平的数组
-export function useCore(props: TreeProps): (data: Ref<IInnerTreeNode[]>) => IUseCore {
+export function useCore(): (data: Ref<IInnerTreeNode[]>) => IUseCore {
   const nodeMap = new Map<string, IInnerTreeNode[]>(); //缓存已经处理过的节点
   return function useCoreFn(data: Ref<IInnerTreeNode[]>): IUseCore {
 
@@ -90,17 +89,17 @@ export function useCore(props: TreeProps): (data: Ref<IInnerTreeNode[]>) => IUse
     // 数组拍平用的是传入的 generateInnerTree， 在 utils中
     const getExpendedTree = (): ComputedRef<IInnerTreeNode[]> => {
       return computed(() => {
-        let excludeNodes: IInnerTreeNode[] = [];
+        let excludeNodes: IInnerTreeNode[] = []; //保存排除的节点
         const result = [];
         for (let i = 0, len = data?.value.length; i < len; i++) {
           const item = data?.value[i];
           if (excludeNodes.map((node) => node.id).includes(item.id) || item.isHide) {
             continue;
-          }
+          } 
           if (item.expanded !== true) { //是折叠的
             excludeNodes = getChildren(item);
-          }
-          result.push(item);
+          } 
+          result.push(item); //能走到这儿说明它是展开的，如果是折叠的，上面的excludeNodes遍历的时候就退出了
         }
         return result;
       });

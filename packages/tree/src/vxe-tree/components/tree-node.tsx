@@ -1,4 +1,4 @@
-import { ComputedRef, ComponentInternalInstance } from 'vue';
+import { ComputedRef, ComponentInternalInstance, onMounted } from 'vue';
 import { ref, computed, defineComponent, inject, renderSlot, toRefs, useSlots } from 'vue';
 import { NODE_HEIGHT, TREE_INSTANCE, USE_TREE_TOKEN } from '../const';
 import { treeNodeProps, TreeNodeProps } from '../tree-types';
@@ -32,6 +32,7 @@ export default defineComponent({
       onDrop,
       onDragend,
       nodeContextMenu,
+      // @ts-ignore
       closeMenu
     } = inject(USE_TREE_TOKEN) as Partial<IUseTree>;
     //inject(USE_TREE_TOKEN) 返回的实际上是一个对象，该对象包含了 IUseTree 接口中定义的一系列方法和属性。而通过使用 Partial<IUseTree>，我们将这些方法和属性都变为可选的，这意味着我们可以只使用其中的某些方法或属性，而不用关心其他未使用的方法或属性是否存在。
@@ -85,17 +86,17 @@ export default defineComponent({
     };
 
     // TODO: 右键菜单
-    // const menuRef = ref<HTMLDivElement | null>(null) //监听右键菜单
-    // const showmenu = ref(false)
-    // const handleClickOutside = (event: MouseEvent) => {
-    //   if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
-    //     // 如果点击了菜单之外的区域，则关闭菜单
-    //     showmenu.value = false
-    //   }
-    // }
-    // onMounted(() => {
-    //   document.addEventListener('click', handleClickOutside)
-    // })
+    const menuRef = ref<HTMLDivElement | null>(null) //监听右键菜单
+    const showmenu = ref(false)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
+        // 如果点击了菜单之外的区域，则关闭菜单
+        showmenu.value = false
+      }
+    }
+    onMounted(() => {
+      document.addEventListener('click', handleClickOutside)
+    })
 
     return () => {
       let dragdropProps = {};
@@ -129,10 +130,10 @@ export default defineComponent({
               toggleSelectNode?.(data.value);//这个是处理节点selected的，不是 expanded，老记错，在 use-select中
               treeInstance?.emit('node-click', data.value);
             }}
-            // onContextmenu={(e) => { //右键菜单
-            //   e.preventDefault();
-            //   nodeContextMenu?.(data.value)
-            // }}
+            onContextmenu={(e) => { //右键菜单
+              e.preventDefault();
+              nodeContextMenu?.(data.value)
+            }}
             {...dragdropProps}
           >
             {/* 这里控制 expanded 属性 折叠 + 自定义图标：为什么每个节点都要有这个，叶子节点不是没有图标吗？因为叶子节点虽然没有图标，但是需要占位符，保持缩进一致 */}
@@ -147,10 +148,10 @@ export default defineComponent({
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
 
               {/* TODO: 右键菜单 */}
-              {/* {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && 
+              {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && 
               <div ref={menuRef} class={ns.e('menu')} nodeData='data'>
                 {slots.contextmenu?.()}
-              </div>} */}
+              </div>}
 
               {dragdrop.value && (
                 <>

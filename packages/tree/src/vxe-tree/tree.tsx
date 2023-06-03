@@ -14,7 +14,8 @@ import {
   IInnerTreeNode,
   ICheckStrategy,
   useDragdrop,
-  useContextMenu
+  useContextMenu,
+  useAccordion
 } from './composables';
 import { USE_TREE_TOKEN, NODE_HEIGHT, TREE_INSTANCE } from './const';
 import { TreeProps, treeProps } from './tree-types';
@@ -30,7 +31,7 @@ export default defineComponent({
   setup(props: TreeProps, context: SetupContext) {
     const { slots, expose } = context;
     const treeInstance = getCurrentInstance();
-    const { check, dragdrop, operate, showLine, checkboxPlaceRight, showContextMenu } = toRefs(props);
+    const { check, dragdrop, operate, showLine, checkboxPlaceRight, showContextMenu, accordion } = toRefs(props);
     const ns = useNamespace('tree');
     const normalRef = ref();
     const data = ref<IInnerTreeNode[]>(formatBasicTree(props.data));//# 这里并没有拍平，只是对用户传入的数据进行属性补全
@@ -53,7 +54,11 @@ export default defineComponent({
       userPlugins.push(useContextMenu() as never);
     }
 
-    const treeFactory = useTree(data.value, userPlugins as never[], context, props);
+    if(accordion.value){
+      userPlugins.push(useAccordion(props) as never)
+    }
+
+    const treeFactory = useTree(data.value, userPlugins as never[], context);
 
     // 通过 useTree 拿到的各种方法都是已经传入拍平data的
     // setTree用于监听，当用户改变数据后，重新更新绑定的数据，并且生成新的拍平数据
@@ -100,14 +105,14 @@ export default defineComponent({
             loading: () => (slots.loading ? renderSlot(useSlots(), 'loading', { nodeData: treeNode }) : <VTreeNodeLoading />),
 
             // TODO: 右键菜单
-            // contextmenu: () => (slots.contextmenu && showContextMenu.value) && renderSlot(useSlots(), 'contextmenu', {nodeData: treeNode})
+            contextmenu: () => (slots.contextmenu && showContextMenu.value) && renderSlot(useSlots(), 'contextmenu', {nodeData: treeNode})
           }}
         </VTreeNode>
       );
 
     return () => {
       const treeData = getExpendedTree?.().value; //只要我们点击折叠展开都会进行计算
-      console.log(treeData)
+
       const vSlotsProps = {
         item: (treeNode: IInnerTreeNode) => renderDTreeNode(treeNode),
       };

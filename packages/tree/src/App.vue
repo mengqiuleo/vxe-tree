@@ -72,7 +72,7 @@ const treeRef = ref(null);
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" ref="treeRef">
+    <vxeTree class="mb-2" :data="data" accordion ref="treeRef">
     </vxeTree>
 
   </div>

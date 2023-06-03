@@ -177,6 +177,10 @@ export interface IContextMenu {
   closeMenu: (node: IInnerTreeNode) => void;
 }
 
+export interface IUseAccordion {
+  accordionNode: (node: IInnerTreeNode) =>  void;
+}
+
 export type IUseTree = {
   treeData: Ref<IInnerTreeNode[]>;
 } & IUseCore &
@@ -189,4 +193,5 @@ IUseMergeNodes &
 IUseLazyLoad &
 IUseSearchFilter &
 IUseDraggable &
-IContextMenu;
+IContextMenu &
+IUseAccordion;
