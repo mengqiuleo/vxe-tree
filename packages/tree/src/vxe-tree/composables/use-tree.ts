@@ -1,5 +1,6 @@
 import { ref, SetupContext } from 'vue';
 import { IInnerTreeNode, ITreeNode, IUseCore, IUseTree } from './use-tree-types';
+import { TreeProps } from '../tree-types';
 import { useToggle } from './use-toggle';
 import { useCore } from './use-core';
 import { useLazyLoad } from './use-lazy-load';
@@ -12,9 +13,9 @@ export const DEFAULT_TREE_PLUGINS = [useToggle()];
  * 将每个 plugin 都传入已经拍平的数组，然后返回所有的plugin
  * core: 提供一些工具函数，比如：getLevel，getParent， getIndex，getExpendedTree，getNode
  */
-export function useTree(tree: ITreeNode[], plugins = [], context: SetupContext): Partial<IUseTree> {
+export function useTree(tree: ITreeNode[], plugins = [], context: SetupContext, props: TreeProps): Partial<IUseTree> {
   const treeData = ref<IInnerTreeNode[]>(generateInnerTree(tree)); //先生成拍平数组
-  const core: IUseCore = useCore()(treeData);
+  const core: IUseCore = useCore(props)(treeData);
 
   // 因为展开操作和懒加载有耦合，需要此处引入
   const lazyLode = useLazyLoad()(treeData, core, context);

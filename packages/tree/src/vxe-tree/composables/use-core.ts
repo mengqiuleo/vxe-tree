@@ -1,5 +1,6 @@
-import { computed, ComputedRef, Ref, onUnmounted } from 'vue';
+import { computed, ComputedRef, Ref, onUnmounted, ref } from 'vue';
 import { IInnerTreeNode, ITreeNode, IUseCore, valueof } from './use-tree-types';
+import { TreeProps } from '../tree-types';
 import { generateInnerTree } from './utils';
 
 const DEFAULT_CONFIG = {
@@ -8,7 +9,7 @@ const DEFAULT_CONFIG = {
 };
 
 // useCore: 用于操作树形结构数据的工具函数库, data是拍平的数组
-export function useCore(): (data: Ref<IInnerTreeNode[]>) => IUseCore {
+export function useCore(props: TreeProps): (data: Ref<IInnerTreeNode[]>) => IUseCore {
   const nodeMap = new Map<string, IInnerTreeNode[]>(); //缓存已经处理过的节点
   return function useCoreFn(data: Ref<IInnerTreeNode[]>): IUseCore {
 

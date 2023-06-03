@@ -1,98 +1,78 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import vxeTree from './vxe-tree/tree';
 
 const data = ref([
   {
-    label: 'parent node 1',
-  },
-  {
-    label: 'parent node 2',
-    expanded: true,
+    label: 'Parent node 1',
     children: [
       {
-        label: 'leaf node 2-1',
-        expanded: true,
+        label: 'Parent node 1-1',
         children: [
           {
-            label: 'leaf node 2-1-1',
-          },
-          {
-            label: 'leaf node 2-1-2',
-          },
-        ],
-      },
-      {
-        label: 'leaf node 2-2',
-        children: [
-          {
-            label: 'leaf node 2-2-1',
-          },
-          {
-            label: 'leaf node 2-2-2',
+            label: 'Parent node 1-1-1',
+            children: [
+              {
+                label: 'Parent node 1-1-1-1',
+              },
+            ],
           },
         ],
       },
     ],
   },
   {
-    label: 'parent node 3',
-    expanded: true,
+    label: 'Parent node 2',
     children: [
       {
-        label: 'leaf node 3-1',
-      },
-      {
-        label: 'leaf node 3-2',
+        label: 'Parent node 2-1',
+        children: [
+          {
+            label: 'Leaf node 2-1-1',
+          },
+          {
+            label: 'Leaf node 2-1-2',
+          },
+        ],
       },
     ],
   },
   {
-    label: 'parent node 4',
-    expanded: true,
+    label: 'Parent node 3',
     children: [
       {
-        label: 'leaf node 4-1',
+        label: 'Leaf node 3-1',
+        children: [
+          {
+            label: 'Leaf node 3-1-1',
+            children: [
+              {
+                label: 'Leaf node 3-1-1-1',
+              },
+            ],
+          },
+        ],
       },
       {
-        label: 'leaf node 4-2',
-      },
-    ],
-  },
-  {
-    label: 'parent node 5',
-    expanded: true,
-    children: [
-      {
-        label: 'leaf node 5-1',
-      },
-      {
-        label: 'leaf node 5-2',
+        label: 'Leaf node 3-2',
       },
     ],
   },
 ]);
 
-const toggleChange = (node: any) => {
-  console.log('toggleChange node:', node);
-};
-
-const contextMenu = (node: any) => {
-  console.log('contextMenu', node)
-}
+// const contextMenu = (node: any) => {
+//   console.log('contextMenu', node)
+// }
+const treeRef = ref(null);
+// onMounted(() => {
+//   treeRef.value.treeFactory.expandAllNodes();
+// });
 
 </script>
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" :data="data" check :show-contextMenu="true" @node-contextmenu="contextMenu"   @toggle-change="toggleChange" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }">
-      <template #contextmenu="{ nodeData }">
-        <div  class="menu">
-          <div>{{ nodeData.label }}</div>
-          <div>{{ nodeData.id  }}</div>
-          <div>delete</div>
-        </div>
-      </template>
+    <vxeTree class="mb-2" :data="data" ref="treeRef">
     </vxeTree>
 
   </div>
@@ -101,11 +81,5 @@ const contextMenu = (node: any) => {
 <style scoped>
 .container {
   width: 500px;
-}
-.menu{
-  background-color: #dfe1e6;
-  width: 100px;
-  height: 80px;
-  border-radius: 4px;
 }
 </style>

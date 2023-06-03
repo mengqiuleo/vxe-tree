@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue';
-import type { ICheck, IOperate, ITreeNode, IDragdrop, IShowLine, ICheckboxPlaceRight, IInnerTreeNode, IShowContextMenu } from './composables/use-tree-types';
+import type { ICheck, IOperate, ITreeNode, IDragdrop, IShowLine, ICheckboxPlaceRight,IAccordion, IInnerTreeNode, IShowContextMenu } from './composables/use-tree-types';
 
 const commonProps = {
   check: {
@@ -24,6 +24,10 @@ const commonProps = {
   },
   showContextMenu: {
     type: [Boolean, String] as PropType<IShowContextMenu>,
+    default: false
+  },
+  accordion: {
+    type: [Boolean, String] as PropType<IAccordion>,
     default: false
   }
 };

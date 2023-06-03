@@ -1,4 +1,4 @@
-import { ComputedRef, ComponentInternalInstance, onMounted } from 'vue';
+import { ComputedRef, ComponentInternalInstance } from 'vue';
 import { ref, computed, defineComponent, inject, renderSlot, toRefs, useSlots } from 'vue';
 import { NODE_HEIGHT, TREE_INSTANCE, USE_TREE_TOKEN } from '../const';
 import { treeNodeProps, TreeNodeProps } from '../tree-types';
@@ -17,7 +17,7 @@ export default defineComponent({
   setup(props: TreeNodeProps, { slots }) {
 
     const { data, check, dragdrop, operate, showLine, checkboxPlaceRight, showContextMenu } = toRefs(props);
-    console.log('contextMenu', showContextMenu.value)
+
     const {
       toggleSelectNode,
       toggleCheckNode,
@@ -84,17 +84,18 @@ export default defineComponent({
       isShowOperationArea.value = false;
     };
 
-    const menuRef = ref<HTMLDivElement | null>(null) //监听右键菜单
-    const showmenu = ref(false)
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
-        // 如果点击了菜单之外的区域，则关闭菜单
-        showmenu.value = false
-      }
-    }
-    onMounted(() => {
-      document.addEventListener('click', handleClickOutside)
-    })
+    // TODO: 右键菜单
+    // const menuRef = ref<HTMLDivElement | null>(null) //监听右键菜单
+    // const showmenu = ref(false)
+    // const handleClickOutside = (event: MouseEvent) => {
+    //   if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
+    //     // 如果点击了菜单之外的区域，则关闭菜单
+    //     showmenu.value = false
+    //   }
+    // }
+    // onMounted(() => {
+    //   document.addEventListener('click', handleClickOutside)
+    // })
 
     return () => {
       let dragdropProps = {};
@@ -125,16 +126,16 @@ export default defineComponent({
           <div
             class={nodeContentClass.value}
             onClick={() => {
-              toggleSelectNode?.(data.value);
+              toggleSelectNode?.(data.value);//这个是处理节点selected的，不是 expanded，老记错，在 use-select中
               treeInstance?.emit('node-click', data.value);
             }}
-            onContextmenu={(e) => {
-              e.preventDefault();
-              nodeContextMenu?.(data.value)
-            }}
+            // onContextmenu={(e) => { //右键菜单
+            //   e.preventDefault();
+            //   nodeContextMenu?.(data.value)
+            // }}
             {...dragdropProps}
           >
-            {/* 折叠 + 自定义图标：为什么每个节点都要有这个，叶子节点不是没有图标吗？因为叶子节点虽然没有图标，但是需要占位符，保持缩进一致 */}
+            {/* 这里控制 expanded 属性 折叠 + 自定义图标：为什么每个节点都要有这个，叶子节点不是没有图标吗？因为叶子节点虽然没有图标，但是需要占位符，保持缩进一致 */}
             {slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: data, toggleNode }) : <VTreeNodeToggle data={data.value} />}
             
             <div class={ns.em('node-content', 'value-wrapper')} style={{ height: `${NODE_HEIGHT}px` }}>
@@ -145,10 +146,11 @@ export default defineComponent({
 
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
 
-              {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && 
+              {/* TODO: 右键菜单 */}
+              {/* {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && 
               <div ref={menuRef} class={ns.e('menu')} nodeData='data'>
                 {slots.contextmenu?.()}
-              </div>}
+              </div>} */}
 
               {dragdrop.value && (
                 <>

@@ -35,7 +35,7 @@ export default defineComponent({
     const normalRef = ref();
     const data = ref<IInnerTreeNode[]>(formatBasicTree(props.data));//# 这里并没有拍平，只是对用户传入的数据进行属性补全
 
-    const userPlugins = [useSelect(), useOperate(), useMergeNodes(), useSearchFilter(), useContextMenu()];
+    const userPlugins = [useSelect(), useOperate(), useMergeNodes(), useSearchFilter()];
 
     const checkOptions = ref<{ checkStrategy: ICheckStrategy }>({ //'upward' | 'downward' | 'both' | 'none';
       checkStrategy: formatCheckStatus(check.value),
@@ -49,7 +49,11 @@ export default defineComponent({
       userPlugins.push(useDragdrop(props, data) as never);
     }
 
-    const treeFactory = useTree(data.value, userPlugins as never[], context);
+    if(showContextMenu.value){
+      userPlugins.push(useContextMenu() as never);
+    }
+
+    const treeFactory = useTree(data.value, userPlugins as never[], context, props);
 
     // 通过 useTree 拿到的各种方法都是已经传入拍平data的
     // setTree用于监听，当用户改变数据后，重新更新绑定的数据，并且生成新的拍平数据
@@ -86,7 +90,7 @@ export default defineComponent({
           nodeData: treeNode,
         })
       ) : (
-        <VTreeNode data={treeNode} showContextMenu={showContextMenu.value} showLine={showLine.value} checkboxPlaceRight={checkboxPlaceRight.value} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
+        <VTreeNode data={treeNode} showLine={showLine.value} showContextMenu={showContextMenu.value}  checkboxPlaceRight={checkboxPlaceRight.value} check={check.value} dragdrop={dragdrop.value} operate={operate.value} key={treeNode.id}>
           {/* 这里是三个具名插槽，通过 content，icon，loading 来控制 */}
           {{
             default: () =>
@@ -94,14 +98,16 @@ export default defineComponent({
             icon: () =>
               slots.icon ? renderSlot(useSlots(), 'icon', { nodeData: treeNode, toggleNode }) : <VTreeNodeToggle data={treeNode} />,
             loading: () => (slots.loading ? renderSlot(useSlots(), 'loading', { nodeData: treeNode }) : <VTreeNodeLoading />),
-            contextmenu: () => (slots.contextmenu && showContextMenu.value) && renderSlot(useSlots(), 'contextmenu', {nodeData: treeNode})
+
+            // TODO: 右键菜单
+            // contextmenu: () => (slots.contextmenu && showContextMenu.value) && renderSlot(useSlots(), 'contextmenu', {nodeData: treeNode})
           }}
         </VTreeNode>
       );
 
     return () => {
-      const treeData = getExpendedTree?.().value;
-
+      const treeData = getExpendedTree?.().value; //只要我们点击折叠展开都会进行计算
+      console.log(treeData)
       const vSlotsProps = {
         item: (treeNode: IInnerTreeNode) => renderDTreeNode(treeNode),
       };

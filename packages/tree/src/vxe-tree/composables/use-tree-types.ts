@@ -139,6 +139,8 @@ export type ICheckboxPlaceRight = boolean;
 
 export type IShowContextMenu = boolean | string;
 
+export type IAccordion = boolean | string;
+
 export type IDragdrop = boolean | IDropType;
 
 export type IOperateItem = 'add' | 'delete' | 'edit';
