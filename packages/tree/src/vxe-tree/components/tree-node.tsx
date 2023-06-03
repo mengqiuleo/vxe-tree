@@ -10,6 +10,8 @@ import VTreeNodeContent from './tree-node-content';
 import { useNamespace } from '../../shared/use-namespace';
 import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
+import { IconAdd } from './icon-add';
+import { IconDelete } from './icon-delete';
 
 export default defineComponent({
   name: 'vxeTreeNode',
@@ -165,18 +167,25 @@ export default defineComponent({
             {/* 新增或删除： isShowOperationArea值是干嘛的？我们鼠标移到每一个元素身上，就会显示add和delete图标 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
-                <button
+                <IconAdd onClick={() => {
+                    insertBefore?.(data.value, { label: 'New node' });
+                  }}></IconAdd>
+                <IconDelete onClick={() => {
+                    removeNode?.(data.value);
+                  }}></IconDelete>
+                {/* <button
                   name="add"
                   onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
                   }}
-                >add</button>
-                <button
+                >add</button> */}
+                {/* <button
                   name="delete"
                   onClick={() => {
                     removeNode?.(data.value);
                   }}
-                >delete</button>
+                >delete</button> */}
+                
               </div>
             )}
           

@@ -72,7 +72,7 @@ const treeRef = ref(null);
 
 <template>
   <div class="container">
-    <vTree class="mb-2" :data="data" check accordion ref="treeRef">
+    <vTree class="mb-2" :data="data" operate check accordion ref="treeRef">
     </vTree>
 
   </div>
