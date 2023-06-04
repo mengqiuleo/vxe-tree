@@ -72,7 +72,7 @@ export default defineComponent({
       },
       { immediate: true },
     );
-    const componentRef = ref<HTMLDivElement>();
+    const componentRef = ref<HTMLDivElement>();//Component是我们视口大小的那个div，相当于那个container，这个也让用户传入，
     const fillerInnerRef = ref<HTMLDivElement>();
     const barRef = ref<IScrollBarExposeFunction>();
     const getKey = (item: Record<string, never>) => {
@@ -335,7 +335,7 @@ export default defineComponent({
     });
 
     return () => {
-      const Component = props.component as keyof HTMLAttributes;
+      const Component = props.component as keyof HTMLAttributes; //Component是我们视口大小的那个div，相当于那个container，这个也让用户传入，
       return (
         <div style={{ position: 'relative' }}>
           <Component

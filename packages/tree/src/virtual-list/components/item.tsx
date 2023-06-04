@@ -12,7 +12,7 @@ const Item: FunctionalComponent<ItemProps> = ({ setRef }, { slots }) => {
   const children = flattenChildren((slots as Slots).default?.());
 
   return children && children.length
-    ? cloneVNode(children[0], { ref: setRef as VNodeProps['ref'], })
+    ? cloneVNode(children[0], { ref: setRef as unknown as VNodeProps['ref'], })
     : children;
 };
 Item.props = {

@@ -2,10 +2,10 @@ import { defineComponent, ref, reactive, computed, onBeforeUnmount, onMounted } 
 import { scrollBarProps } from '../virtual-list-types';
 
 interface ScrollBarState {
-  dragging: boolean;
+  dragging: boolean;//正在拖拽
   pageY: number | null;
-  startTop: number | null;
-  visible: boolean;
+  startTop: number | null; //滑块起始位置
+  visible: boolean;//滚动条是否可见
 }
 
 function getPageY(e: MouseEvent | TouchEvent) {
@@ -17,7 +17,7 @@ export default defineComponent({
   props: scrollBarProps,
   setup(props, ctx) {
     const scrollbarRef = ref<HTMLElement | null>(null);
-    const thumbRef = ref<HTMLElement | null>(null);
+    const thumbRef = ref<HTMLElement | null>(null); //滚动条的滑块，并且也已经自定义样式了
     const moveRaf = ref<number>(0);
     const state = reactive<ScrollBarState>({
       dragging: false,
@@ -25,7 +25,7 @@ export default defineComponent({
       startTop: null,
       visible: false,
     });
-    const visibleTimeout = ref<NodeJS.Timeout | null>(null);
+    const visibleTimeout = ref<NodeJS.Timeout | null>(null);//滑块显示的时间
 
     const canScroll = computed(() => {
       return (props.scrollHeight || 0) > (props.height || 0);

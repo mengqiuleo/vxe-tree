@@ -172,20 +172,7 @@ export default defineComponent({
                   }}></IconAdd>
                 <IconDelete onClick={() => {
                     removeNode?.(data.value);
-                  }}></IconDelete>
-                {/* <button
-                  name="add"
-                  onClick={() => {
-                    insertBefore?.(data.value, { label: 'New node' });
-                  }}
-                >add</button> */}
-                {/* <button
-                  name="delete"
-                  onClick={() => {
-                    removeNode?.(data.value);
-                  }}
-                >delete</button> */}
-                
+                  }}></IconDelete>   
               </div>
             )}
           
