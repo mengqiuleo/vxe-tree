@@ -149,10 +149,7 @@ export default defineComponent({
               {getNode?.(data.value)?.loading ? slots.loading ? renderSlot(useSlots(), 'loading') : <VTreeNodeLoading /> : ''}
 
               {/* TODO: 右键菜单 */}
-              {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && 
-              <div ref={menuRef} class={ns.e('menu')} nodeData='data'>
-                {slots.contextmenu?.()}
-              </div>}
+              {(slots.contextmenu && showContextMenu.value && data.value.nodeContextMenu) && renderSlot(useSlots(), 'contextmenu', {nodeData: data})}
 
               {dragdrop.value && (
                 <>
@@ -167,12 +164,18 @@ export default defineComponent({
             {/* 新增或删除： isShowOperationArea值是干嘛的？我们鼠标移到每一个元素身上，就会显示add和delete图标 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
-                <IconAdd onClick={() => {
+                <span onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
-                  }}></IconAdd>
-                <IconDelete onClick={() => {
+                  }}><IconAdd/></span>
+                {/* <IconAdd onClick={() => {
+                    insertBefore?.(data.value, { label: 'New node' });
+                  }}></IconAdd> */}
+                {/* <IconDelete onClick={() => {
                     removeNode?.(data.value);
-                  }}></IconDelete>   
+                  }}></IconDelete>    */}
+                <span onClick={() => {
+                    removeNode?.(data.value);
+                  }}><IconDelete/></span>
               </div>
             )}
           

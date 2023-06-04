@@ -42,7 +42,7 @@ export function useCore(): (data: Ref<IInnerTreeNode[]>) => IUseCore {
       const getInnerExpendedTree = (): ComputedRef<IInnerTreeNode[]> => { 
         return computed(() => {
           let excludeNodes: IInnerTreeNode[] = [];
-          const result = [];
+          const result: IInnerTreeNode[] = [];
           for (let i = 0, len = data?.value.length; i < len; i++) {
             const item = data?.value[i];
             if (excludeNodes.map((innerNode) => innerNode.id).includes(item.id)) {
@@ -57,7 +57,7 @@ export function useCore(): (data: Ref<IInnerTreeNode[]>) => IUseCore {
         });
       };
 
-      const result = [];
+      const result: IInnerTreeNode[] = [];
       const config = { ...DEFAULT_CONFIG, ...userConfig };
       //如果用户指定了 只获取展开的节点，调用 getInnerExpendedTree 函数获得展开的节点列表，再在展开的节点列表中进行查找子节点。
       const treeData = config.expanded ? getInnerExpendedTree() : data;
@@ -90,7 +90,7 @@ export function useCore(): (data: Ref<IInnerTreeNode[]>) => IUseCore {
     const getExpendedTree = (): ComputedRef<IInnerTreeNode[]> => {
       return computed(() => {
         let excludeNodes: IInnerTreeNode[] = []; //保存排除的节点
-        const result = [];
+        const result: IInnerTreeNode[] = [];
         for (let i = 0, len = data?.value.length; i < len; i++) {
           const item = data?.value[i];
           if (excludeNodes.map((node) => node.id).includes(item.id) || item.isHide) {

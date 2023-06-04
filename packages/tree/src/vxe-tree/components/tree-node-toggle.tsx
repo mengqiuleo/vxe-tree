@@ -34,9 +34,9 @@ export default defineComponent({
             // node-indent 这个 span 是占位符，因为如果是叶子节点，也要有展开收起图标的缩进
             <span class={ns.e('node-indent')} />
           ) : data.value.expanded ? (
-            <IconOpen class="mr-xs" />
+            <IconOpen />
           ) : (
-            <IconClose class="mr-xs" />
+            <IconClose />
           )}
         </span>
         

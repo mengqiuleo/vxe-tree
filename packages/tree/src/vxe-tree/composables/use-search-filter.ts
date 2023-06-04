@@ -61,7 +61,7 @@ export function useSearchFilter() {
       }
     };
 
-    const hasParentNodeMatched = (pre: number, cur: number, parentIdSet: Set<unknown>) => {
+    const hasParentNodeMatched = (pre: number, _cur: number, parentIdSet: Set<unknown>) => {
       return parentIdSet.has(data.value[pre].id) && data.value[pre].isMatched;
     };
 

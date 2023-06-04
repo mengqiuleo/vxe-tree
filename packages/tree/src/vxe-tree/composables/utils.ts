@@ -47,7 +47,7 @@ export function flatToNested(flatTree: IInnerTreeNode[]): ITreeNode[] {
  * - 'currentIndex'：当前节点在父节点的索引
  */
 const { setInitSelectedNode } = useInitSelectCollection();
-export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0, path: ITreeNode[] = []): IInnerTreeNode[] {
+export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0, path: IInnerTreeNode[] = []): IInnerTreeNode[] {
   level++;
 
   return tree.reduce((acc: IInnerTreeNode[], item: ITreeNode, currentIndex) => {
@@ -80,8 +80,10 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
     }
 
     if (!newItem[key]) {
+      // @ts-ignore
       return acc.concat({ ...newItem, isLeaf: newItem.isLeaf === false ? false : true });
     } else {
+     // @ts-ignore
       return acc.concat(omit<ITreeNode>(newItem, 'children'), generateInnerTree(newItem[key], key, level, path));
     }
   }, []);
