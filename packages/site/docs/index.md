@@ -1,0 +1,38 @@
+---
+layout: home
+
+title: vxe-tree
+titleTemplate: 一个高性能tree组件
+editLink: true
+lastUpdated: true
+cleanUrls: true
+appearance: true
+hero:
+  name: vxeTree
+  text: A powerful tree component for Vue3
+  tagline: 高效而美观、无限滚动
+  image:
+    src: /logo.svg
+    alt: vxeTree
+  actions:
+    - theme: brand
+      text: 开始使用
+      link: /guide/installation
+    - theme: alt
+      text: 在 Github 上查看
+      link: https://github.com/mengqiuleo/vxe-tree
+
+features:
+  - icon: 💡
+    title: 丰富的交互选项
+    details: 支持多种交互选项，包括：展开/折叠、选择、拖拽等，帮助您实现各种需求
+  - icon: 📦
+    title: 轻松展示大量数据
+    details: 采用虚拟滚动优化大数据的场景
+  - icon: 🔐
+    title: 安全性
+    details: 确保 80% 以上单元测试覆盖率
+  - icon: 🌍
+    title: 主题定制
+    details: 支持更改组件颜色
+---

@@ -1,7 +1,6 @@
 {
-  "name": "tree",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vxetree",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
