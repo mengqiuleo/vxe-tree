@@ -1,0 +1,37 @@
+{
+  "id": "4104479",
+  "name": "tree",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "35646044",
+      "name": "MinusSquare",
+      "font_class": "MinusSquare",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "35646045",
+      "name": "PlusSquare",
+      "font_class": "PlusSquare",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "35646067",
+      "name": "增加",
+      "font_class": "zengjia",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "35646072",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}

@@ -37,13 +37,16 @@
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-svg-sprites": "^1.2.5",
     "rollup-plugin-svg-to-vue": "^1.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "rollup-plugin-vue": "^6.0.0",
     "rollup-plugin-vue3-svg-inline": "^0.1.1",
     "sass": "^1.62.1",
     "typescript": "^5.0.2",
+    "unplugin-svg-component": "^0.7.3",
     "vite": "^4.3.9",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.4.2"
   }
 }

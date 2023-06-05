@@ -4,14 +4,12 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts'
-import svg from 'rollup-plugin-svg'
 import image from '@rollup/plugin-image';
 import cssnano from "cssnano";
 import postcss from "rollup-plugin-postcss";
-import svgToVue from 'rollup-plugin-svg-to-vue';
-// import from "rollup-plugin-vue3-svg-inline"
 
 //"build": "vue-tsc && vite build" 原来的打包方式
+// "build": "rollup -c"
 export default [{
   input: './src/tree.ts',
   output: [
@@ -25,21 +23,21 @@ export default [{
     }
   ],
   plugins: [
+    commonjs(),
     babel({
       exclude: 'node_modules/**'
     }),
     resolve({
       extensions: ['.js', '.ts', '.tsx'],
     }),
-    commonjs(),
-    typescript(),
-    svgToVue(),
+    typescript({
+      tsconfig: './tsconfig.json',
+      include: ['./src/**/*.ts', './src/**/*.tsx']
+    }),
     vue(),
-    svg(),
-    image(),
     postcss({
       plugins: [cssnano],
-    }),
+    })
   ]
 },
 {
