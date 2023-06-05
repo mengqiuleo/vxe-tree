@@ -2,7 +2,7 @@
   "name": "site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -18,10 +18,13 @@
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
     "prismjs": "^1.29.0",
+    "unplugin-vue-setup-extend-plus": "^1.0.0",
+    "vite-svg-loader": "^4.0.0",
     "vitepress": "1.0.0-beta.1",
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "vxe-tree": "workspace:*"
+    "element-plus": "^2.3.6",
+    "vxe-tree": "workspace:^0.2.0"
   }
 }

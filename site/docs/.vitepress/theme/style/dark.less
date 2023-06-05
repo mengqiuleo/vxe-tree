@@ -1,0 +1,172 @@
+html.dark {
+  --vp-c-bg-alt: #141414 !important; // 深色模式侧边栏
+  --vp-c-bg: #141414 !important;
+  --vp-c-black-soft: #141414;
+  --vp-c-indigo-lighter: #e5eaf3;
+  --vp-c-bg-alpha-with-backdrop: #141414;
+
+  // code
+  --vp-code-block-bg: #1b1b1b !important;
+  --code-color: #d4d4d4 !important;
+  --code-script-color: #4fc1ff !important;
+  --code-select-bg-color: #b3d4fc !important;
+  --code-comment-color: #998 !important;
+  --code-attr-value-color: #ce9178 !important;
+  --code-punctuation-color: #808080 !important;
+  --code-entity-color: #36acaa !important;
+  --code-number-color: #b5cea8 !important;
+  --code-attr-name-color: #9cdcfe !important;
+  --code-tag-color: #596cd6 !important;
+  --code-language-autohotkey-color: #3182bd !important;
+  --code-select-color: #d7ba7d !important;
+  --code-keyword-color: #c586c0 !important;
+  --code-proerty-color: #9cdcfe !important;
+  --code-function-color: #dcdcaa !important;
+  --code-lang-color: #b5cea8 !important;
+  // code-raw
+  --shiki-token-string: #82aaff !important;
+  --shiki-token-comment: #758575 !important;
+  --shiki-color-text: #e5eaf3 !important;
+  --shiki-token-keyword: #89ddff !important;
+  --shiki-token-constant: #e5eaf3 !important;
+  --shiki-token-string-expression: #c3e88d !important;
+  --shiki-token-function: #82aaff !important;
+  // search
+  --search-bg-color: rgb(0 0 0 / 80%) !important;
+  --seach-bg-pla-color: #161618 !important;
+  // home
+  --vi-color-primary: #f9f9f9;
+  --vi-bg-color-primary: rgb(22 22 26);
+  --vi-mac-bg-color-primary: rgb(53 54 60);
+  --vi-welcome-color: #f9f9f9;
+
+  .vp-doc h2 {
+    color: var(--vp-c-text-dark-1) !important;
+  }
+
+  .tip.custom-block {
+    color: #e5eaf3;
+    background-color: #7593f71a !important;
+  }
+
+  .vp-doc :not(pre) > code {
+    color: #e5eaf3;
+  }
+
+  .VPNav {
+    background-image: radial-gradient(transparent 1.8px, #000 1px);
+    border-bottom: 1px solid #dcdfe6;
+  }
+
+  .VPNavBarTitle {
+    .title {
+      color: #5d80f4 !important;
+    }
+  }
+
+  .VPSidebarGroup {
+    .VPLink {
+      &.active {
+        background: rgb(64 158 255 / 10%) !important;
+      }
+    }
+  }
+
+  .example {
+    border: 1px solid rgb(119 119 119 / 49.3%) !important;
+  }
+
+  p.details {
+    border: 0;
+  }
+
+  .details {
+    border: 1px solid rgb(63 63 63);
+
+    summary {
+      background: #232323 !important;
+    }
+  }
+
+  .custom-block {
+    background: #232323 !important;
+  }
+
+  .icon_content {
+    border-top: 1px solid rgb(63 63 63) !important;
+    border-left: 1px solid rgb(63 63 63) !important;
+
+    .icon_list {
+      border-right: 1px solid rgb(63 63 63) !important;
+      border-bottom: 1px solid rgb(63 63 63) !important;
+    }
+  }
+  // 布局容器
+  .container-style {
+    border: 1px solid rgb(84 84 84 / 48%) !important;
+  }
+
+  ._components_container {
+    .container-style {
+      color: #232323;
+    }
+  }
+  // 滚动条容器
+  .example_scrollbar {
+    border: 1px solid rgb(84 84 84 / 48%) !important;
+  }
+
+  .group {
+    .items {
+      padding-right: 12px;
+
+      .VPSidebarItem {
+        padding: 2px 0;
+        padding-left: 12px;
+        margin: 6px 0;
+        font-size: 13px;
+
+        &.is-active,
+        .has-active {
+          box-sizing: border-box;
+          background: rgb(64 158 255 / 10%);
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+  // 首页样式
+  .VPHome {
+    .actions {
+      .action {
+        &:last-of-type {
+          a {
+            &:hover {
+              background-color: rgb(255 255 255 / 12%);
+            }
+          }
+        }
+      }
+    }
+
+    .image-bg {
+      &::after {
+        background-color: rgb(10 149 136);
+      }
+
+      &::before {
+        background-color: rgb(52 68 163);
+      }
+    }
+  }
+}
+
+.VPNav {
+  .VPNavBar {
+    .container {
+      .title {
+        background: var(--vp-c-bg) !important;
+      }
+    }
+  }
+}

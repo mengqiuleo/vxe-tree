@@ -7,7 +7,7 @@ export default {
   title: 'vxeTree',
   description: 'A powerful tree component for Vue3',
   lang: 'cn-ZH',
-  base: '/vxe-tree/',
+  base: process.env.NODE_ENV === "production" ? "/vxe-tree/" : "/",
   lastUpdated: true,
   themeConfig: {
     // theme-level options
@@ -29,7 +29,7 @@ export default {
     //   },
     //   lineNumbers: true,
     //   config: (md) => {
-    //     md.use(require('markdown-it-task-lists'))
+    //     md.use(require('markdown-it-container'))
     //   },
     // },
     markdown: {
@@ -38,9 +38,6 @@ export default {
       theme: "css-variables",
       config: (md) => mdPlugin(md),
     },
-    // search: {
-    //   provider: 'local'
-    // },
     algolia: {
       apiKey: "1b9f029b9fb387a0cb9eef2145b29d62",
       indexName: "chai-mayor-gitee",
