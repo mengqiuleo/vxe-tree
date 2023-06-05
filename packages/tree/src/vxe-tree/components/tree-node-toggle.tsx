@@ -5,7 +5,6 @@ import { IconClose } from './icon-close';
 import { IconOpen } from './icon-open';
 
 import { useNamespace } from '../../shared/use-namespace';
-import '../../assets/iconfont.css'
 
 export default defineComponent({
   name: 'VTreeNodeToggle',

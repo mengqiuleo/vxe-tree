@@ -13,7 +13,6 @@ import { formatCheckStatus } from '../utils';
 import { IconAdd } from './icon-add';
 import { IconDelete } from './icon-delete';
 
-import '../../assets/iconfont.css'
 
 export default defineComponent({
   name: 'vxeTreeNode',

@@ -1,12 +1,12 @@
 import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts'
 import image from '@rollup/plugin-image';
-import cssnano from "cssnano";
 import postcss from "rollup-plugin-postcss";
+import cssnano from "cssnano";
+import { terser } from "rollup-plugin-terser";
+import delFile from "rollup-plugin-delete";
 
 const extensions = ['.ts', '.js', '.tsx', '.less']
 
@@ -26,15 +26,20 @@ export default [{
   ],
   external: ['jest'],
   plugins: [
+    delFile({ targets: "dist/*" }),
     vue({ preprocessStyles: true }),
-    postcss(),
+    postcss({
+      extract: "index.css",
+    }),
+    cssnano(),
     typescript({
         sourceMap: false
     }),
     babel({
         extensions: extensions
     }),
-    image()
+    image(),
+    terser()
   ]
 },
 {
