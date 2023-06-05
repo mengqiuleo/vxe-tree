@@ -11,7 +11,7 @@ Import in your project:
 import vxeTree from 'vxe-tree';
 
 //import the styles
-import 'vxe-tree/index.css';
+import 'vxe-tree/dist/index.css';
 
 Vue.use(vxeTree);
 ```
