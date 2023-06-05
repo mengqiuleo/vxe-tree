@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
-import vxeTree from './vxe-tree/tree';
+import { onMounted, ref } from 'vue';
 
 const data = ref([
   {
@@ -20,18 +19,16 @@ const treeRef = ref(null);
 onMounted(() => {
   treeRef.value.treeFactory.expandAllNodes();
 });
-
 </script>
 
 <template>
   <div class="container">
-    <vxeTree class="mb-2" check operate :data="data" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }" ref="treeRef">
+    <vxeTree check operate :data="data" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }" ref="treeRef">
     </vxeTree>
-
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .container {
   width: 500px;
 }

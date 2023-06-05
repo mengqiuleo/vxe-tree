@@ -2,7 +2,7 @@ import { reactive, computed } from 'vue';
 import type { Ref } from 'vue';
 import type { TreeProps } from '../tree-types';
 import type { DragState, IUseDraggable, IDropNode, IInnerTreeNode, ITreeNode, IDropType } from './use-tree-types';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { useNamespace } from '../../shared/use-namespace';
 import { formatBasicTree } from '../utils';
 

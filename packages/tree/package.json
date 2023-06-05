@@ -28,7 +28,8 @@
     "dev": "vite",
     "build": "rollup -c",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "release": "release-it"
   },
   "peerDependencies": {
     "vue": "^3.2.47"
@@ -52,7 +53,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
-    "lodash": "^4.17.21",
     "node-sass": "^9.0.0",
     "rollup": "^3.23.0",
     "rollup-plugin-babel": "^4.4.0",

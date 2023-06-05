@@ -1,3 +1,5 @@
 packages:
-  - "!packages/tree"
+  - "packages/**"
+  - "!packages/tree/src/vxe-tree"
   - "site"
+  - "playground"

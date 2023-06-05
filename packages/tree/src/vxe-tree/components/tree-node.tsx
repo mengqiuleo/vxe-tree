@@ -173,12 +173,10 @@ export default defineComponent({
                   }}></IconDelete>   
                 {/* <span onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
-                  }}></span>
+                  }}><IconAdd/></span>
                 <span onClick={() => {
                     removeNode?.(data.value);
-                  }}></span> */}
-                  {/* <i class="iconfont icon-zengjia"></i>
-                  <i class="iconfont icon-shanchu"></i> */}
+                  }}><IconDelete/></span> */}
               </div>
             )}
           

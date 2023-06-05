@@ -15,6 +15,11 @@ import 'vxe-tree/index.css';
 
 Vue.use(vxeTree);
 ```
+Add .d.ts file:
+```js
+declare module 'vxe-tree'
+```
+
 ## Features
 - Lazy-loading 
 - Checkbox selection
@@ -29,7 +34,7 @@ Please refer to the documentation for specific usage
 
 ## Theme customization
 After introducing the default styles, introduce your own styles
-```css
+```js
 :root {
   --vxe-brand: red; //checkBox style
   --vxe-list-item-selected-bg: blue; //selected style
