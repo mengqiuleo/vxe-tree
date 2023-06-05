@@ -24,7 +24,7 @@ import { formatCheckStatus, formatBasicTree } from './utils';
 import './tree.scss';
 
 export default defineComponent({
-  name: 'vxe-tree',
+  name: 'vxeTree',
   props: treeProps,
   emits: ['toggle-change', 'check-change', 'select-change', 'node-click', 'lazy-load', 'node-contextmenu'],
   // @ts-ignore

@@ -1,13 +1,36 @@
 {
-  "name": "vxetree",
-  "version": "0.0.1",
+  "name": "vxe-tree",
+  "version": "0.0.2",
+  "author": "mengqiuleo",
+  "description": "A powerful tree component for Vue3",
+  "homepage": "https://github.com/mengqiuleo/vxe-tree#README",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "tree component",
+    "virtual scroll",
+    "vue3",
+    "drag"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mengqiuleo/vxe-tree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mengqiuleo/vxe-tree/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
     "preview": "vite preview",
     "test": "jest"
   },
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -43,5 +66,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vue-tsc": "^1.4.2"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }

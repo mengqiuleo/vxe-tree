@@ -1,14 +1,42 @@
-目录
-- assets: 使用的svg，但是rollup打包失败，换一种使用方式,iconfont
-- test_todo: 未实现的测试，rollup打包会报错，暂存
+# vxeTree
+A powerful tree component for Vue3
 
-
-iconfont 使用
-```js
-import '../../assets/iconfont.css'
-
-<i class="iconfont icon-PlusSquare"></i>
-<i class="iconfont icon-MinusSquare"></i>
-<i class="iconfont icon-shanchu"></i>
-<i class="iconfont icon-zengjia">
+## Installing
+Install with npm:
 ```
+npm install vxe-tree
+```
+Import in your project:
+```js
+import vxeTree from 'vxe-tree';
+
+//import the styles
+import 'vxe-tree/index.css';
+
+Vue.use(vxeTree);
+```
+## Features
+- Lazy-loading 
+- Checkbox selection
+- Disabled and Default state
+- Custom icons
+- Search filtering
+- Virtual scrolling
+- Drag and drop functionality
+- Action buttons
+
+Please refer to the documentation for specific usage
+
+## Theme customization
+After introducing the default styles, introduce your own styles
+```css
+:root {
+  --vxe-brand: red; //checkBox style
+  --vxe-list-item-selected-bg: blue; //selected style
+  --vxe-list-item-hover-bg: yellow; //hover style
+}
+```
+
+
+## License
+MIT License © 2023 [mengqiuleo](https://github.com/mengqiuleo)
