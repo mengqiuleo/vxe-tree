@@ -1,5 +1,6 @@
 # vxeTree
 A powerful tree component for Vue3
+![logo](assets/logo.svg)
 
 ## Installing
 Install with npm:
@@ -9,13 +10,18 @@ npm install vxe-tree
 Import in your project:
 ```js
 import vxeTree from 'vxe-tree';
-
+ 
 //import the styles
-import 'vxe-tree/index.css';
+import 'vxe-tree/dist/index.css';
 
 Vue.use(vxeTree);
 ```
-Example tree with check and edit
+Add .d.ts file:
+```js
+declare module 'vxe-tree'
+```
+
+**Example tree with check and edit**
 ![tree](assets/tree.jpg)
 
 ## Features
@@ -32,7 +38,7 @@ Please refer to the documentation for specific usage
 
 ## Theme customization
 After introducing the default styles, introduce your own styles
-```css
+```js
 :root {
   --vxe-brand: red; //checkBox style
   --vxe-list-item-selected-bg: blue; //selected style
