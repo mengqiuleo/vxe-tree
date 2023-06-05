@@ -8,6 +8,8 @@ import image from '@rollup/plugin-image';
 import cssnano from "cssnano";
 import postcss from "rollup-plugin-postcss";
 
+const extensions = ['.ts', '.js', '.tsx', '.less']
+
 //"build": "vue-tsc && vite build" 原来的打包方式
 // "build": "rollup -c"
 export default [{
@@ -22,22 +24,17 @@ export default [{
       format: "esm"
     }
   ],
+  external: ['jest'],
   plugins: [
-    commonjs(),
-    babel({
-      exclude: 'node_modules/**'
-    }),
-    resolve({
-      extensions: ['.js', '.ts', '.tsx'],
-    }),
+    vue({ preprocessStyles: true }),
+    postcss(),
     typescript({
-      tsconfig: './tsconfig.json',
-      include: ['./src/**/*.ts', './src/**/*.tsx']
+        sourceMap: false
     }),
-    vue(),
-    postcss({
-      plugins: [cssnano],
-    })
+    babel({
+        extensions: extensions
+    }),
+    image()
   ]
 },
 {

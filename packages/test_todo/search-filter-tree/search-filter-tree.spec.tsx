@@ -14,7 +14,7 @@ const ns = useNamespace('tree', true);
 const searchNs = useNamespace('search', true);
 
 describe('Tree node search filter', () => {
-  it.skip('node search event', async () => {
+  it.todo('node search event', async () => {
     const wrapper: VueWrapper<ComponentPublicInstance> = mount({
       setup() {
         const treeRef = ref<ComponentInternalInstance | null>(null);
@@ -61,11 +61,12 @@ describe('Tree node search filter', () => {
     wrapper.unmount();
   });
 
-  it.skip('node filter event', async () => {
+  it.todo('node filter event', async () => {
     const wrapper: VueWrapper<ComponentPublicInstance> = mount({
       setup() {
         const treeRef = ref<ComponentInternalInstance | null>(null);
         const onSearch = (value) => {
+          // @ts-ignore
           treeRef.value.treeFactory.searchTree(value, { isFilter: true });
         };
         return () => {

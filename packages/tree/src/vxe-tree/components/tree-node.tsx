@@ -10,8 +10,8 @@ import VTreeNodeContent from './tree-node-content';
 import { useNamespace } from '../../shared/use-namespace';
 import { omit } from '../../shared/omit';
 import { formatCheckStatus } from '../utils';
-// import { IconAdd } from './icon-add';
-// import { IconDelete } from './icon-delete';
+import { IconAdd } from './icon-add';
+import { IconDelete } from './icon-delete';
 
 import '../../assets/iconfont.css'
 
@@ -166,18 +166,20 @@ export default defineComponent({
             {/* 新增或删除： isShowOperationArea值是干嘛的？我们鼠标移到每一个元素身上，就会显示add和delete图标 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
-                {/* <IconAdd onClick={() => {
+                <IconAdd onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
                   }}></IconAdd>
                 <IconDelete onClick={() => {
                     removeNode?.(data.value);
-                  }}></IconDelete>    */}
-                <span onClick={() => {
+                  }}></IconDelete>   
+                {/* <span onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
-                  }}><i class="iconfont icon-zengjia"></i></span>
+                  }}></span>
                 <span onClick={() => {
                     removeNode?.(data.value);
-                  }}><i class="iconfont icon-shanchu"></i></span>
+                  }}></span> */}
+                  {/* <i class="iconfont icon-zengjia"></i>
+                  <i class="iconfont icon-shanchu"></i> */}
               </div>
             )}
           

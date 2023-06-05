@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue';
-import vTree from './vxe-tree/tree';
+// import vxeTree from '../dist/index.esm.js'
+// import vxeTree from './vxe-tree/tree';
 
 const data = ref([
   {
@@ -25,8 +26,8 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <vTree class="mb-2" check operate :data="data" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }" ref="treeRef">
-    </vTree>
+    <vxeTree class="mb-2" check operate :data="data" :dragdrop="{ dropPrev: true, dropNext: true, dropInner: true }" ref="treeRef">
+    </vxeTree>
 
   </div>
 </template>

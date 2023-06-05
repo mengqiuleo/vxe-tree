@@ -8,6 +8,7 @@ export default defineComponent({
   name: 'DCheckbox',
   props: checkboxProps,
   emits: ['change', 'update:checked', 'update:modelValue'],
+  // @ts-ignore
   setup(props: CheckboxProps, ctx: SetupContext) {
     const ns = useNamespace('checkbox');
     const {
@@ -16,9 +17,9 @@ export default defineComponent({
     } = useCheckbox(props, ctx);
 
     return () => {
-      const wrapperCls = {
-        [ns.e('column-margin')]: 'column',
-      };
+      // const wrapperCls = {
+      //   [ns.e('column-margin')]: 'column',
+      // };
       const wrapperStyle: StyleValue | undefined = [];
       const checkboxCls = {
         [ns.b()]: true,

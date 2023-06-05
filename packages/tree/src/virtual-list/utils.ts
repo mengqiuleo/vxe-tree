@@ -38,7 +38,9 @@ export const flattenChildren = (children?: VNode[], filterEmpty = true): VNode[]
 
 export const findDOMNode = (instance: (ComponentInternalInstance & { $el: VNode['el'] }) | null): VNode['el'] => {
   let node = instance?.vnode?.el || (instance && (instance?.$el || instance));
+  // @ts-ignore
   while (node && !node.tagName) {
+    // @ts-ignore
     node = node.nextSibling;
   }
   return node;

@@ -26,6 +26,7 @@ describe('Basic tree', () => {
         });
         const onDisable = () => {
           const obj = [...data.value];
+          // @ts-ignore
           obj[0].disableToggle = true;
           data.value = obj;
         };

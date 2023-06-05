@@ -28,6 +28,7 @@ describe('Tree node lazyLoad', () => {
           }, 500);
         };
         return () => {
+          // @ts-ignore
           return <Tree data={lazyTreeData} ref={treeRef} onLazyLoad={onLazyLoad} />;
         };
       },

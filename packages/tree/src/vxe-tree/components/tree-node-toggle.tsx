@@ -1,8 +1,8 @@
 import { defineComponent, inject, PropType, toRefs } from 'vue';
 import { USE_TREE_TOKEN } from '../const';
 import { IInnerTreeNode, IUseTree } from '../composables';
-// import { IconClose } from './icon-close';
-// import { IconOpen } from './icon-open';
+import { IconClose } from './icon-close';
+import { IconOpen } from './icon-open';
 
 import { useNamespace } from '../../shared/use-namespace';
 import '../../assets/iconfont.css'
@@ -36,9 +36,11 @@ export default defineComponent({
             // node-indent 这个 span 是占位符，因为如果是叶子节点，也要有展开收起图标的缩进
             <span class={ns.e('node-indent')} />
           ) : data.value.expanded ? (
-            <i class="iconfont icon-MinusSquare"></i>
+            // <i class="iconfont icon-MinusSquare"></i>
+            <IconClose/>
           ) : (
-            <i class="iconfont icon-PlusSquare"></i>
+            // <i class="iconfont icon-PlusSquare"></i>
+            <IconOpen/>
           )}
         </span>
         
