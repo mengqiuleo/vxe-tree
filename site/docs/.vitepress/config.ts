@@ -138,7 +138,7 @@ export default {
             { text: "Tree 插槽", link: "/components/chacao" },
             { text: "TreeNode 参数", link: "/components/treeNode" },
             { text: "Tree 类型定义", link: "/components/leixing" },
-            { text: "treeFactory", link: "/components/treefactory" },
+            { text: "treeFactory", link: "/components/treeFactory" },
           ],
         },
         {

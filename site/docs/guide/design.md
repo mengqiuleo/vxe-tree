@@ -1,6 +1,6 @@
 # vxeTree <el-badge value="0.2.0" type='primary'></el-badge>
 
-![logo](/public/logo.svg)
+![logo](../public/logo.svg)
 
 ## 项目背景
 
