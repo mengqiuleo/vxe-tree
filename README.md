@@ -1,8 +1,9 @@
 # vxeTree
+<p  align='center'><img src='/assets/logo.svg'/></p>
 
-![logo](assets/logo.svg)
+
 <p align='center'>
-  <h4 align="center">A powerful tree component for Vue3</h4>
+  <h4 align='center'>A powerful tree component for Vue3</h4>
 </p>
 
 

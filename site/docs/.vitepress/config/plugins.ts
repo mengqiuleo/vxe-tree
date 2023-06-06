@@ -60,13 +60,13 @@ export const mdPlugin = (md) => {
           source = fs.readFileSync(filePath, "utf-8");
         }
         if (!source) throw new Error(`Incorrect source file: ${sourceFile}`);
-        return `<h-code source="${encodeURIComponent(
+        return `<vxe-code source="${encodeURIComponent(
           highlight(source, "vue"),
         )}" raw-source="${encodeURIComponent(
           source,
         )}" page-name="${sourceFile}">`;
       } else {
-        return "</h-code>";
+        return "</vxe-code>";
       }
     },
   });

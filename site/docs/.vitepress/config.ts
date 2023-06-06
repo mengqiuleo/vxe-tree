@@ -32,12 +32,7 @@ export default {
     //     md.use(require('markdown-it-container'))
     //   },
     // },
-    markdown: {
-      // dark-plus vscode
-      // css-variables custom
-      theme: "css-variables",
-      config: (md) => mdPlugin(md),
-    },
+    
     algolia: {
       apiKey: "1b9f029b9fb387a0cb9eef2145b29d62",
       indexName: "chai-mayor-gitee",
@@ -127,6 +122,11 @@ export default {
       ]
     }
   },
-
+  markdown: {
+    // dark-plus vscode
+    // css-variables custom
+    theme: "css-variables",
+    config: (md) => mdPlugin(md),
+  },
   
 }

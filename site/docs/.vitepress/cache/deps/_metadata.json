@@ -1,19 +1,53 @@
 {
-  "hash": "e73c58b6",
-  "browserHash": "1b835e6b",
+  "hash": "fa2aee91",
+  "browserHash": "b3731b63",
   "optimized": {
     "vue": {
       "src": "../../../../../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "502cf0fc",
+      "fileHash": "b17e85ec",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "src": "../../../../../node_modules/.pnpm/@vueuse+core@10.1.2_vue@3.3.4/node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "9ab6e3f2",
+      "needsInterop": false
+    },
+    "element-plus": {
+      "src": "../../../../../node_modules/.pnpm/element-plus@2.3.6_vue@3.3.4/node_modules/element-plus/es/index.mjs",
+      "file": "element-plus.js",
+      "fileHash": "60225bab",
       "needsInterop": false
     },
     "lodash-es": {
       "src": "../../../../../node_modules/.pnpm/lodash-es@4.17.21/node_modules/lodash-es/lodash.js",
       "file": "lodash-es.js",
-      "fileHash": "c35bad6d",
+      "fileHash": "02e844eb",
+      "needsInterop": false
+    },
+    "@element-plus/icons-vue": {
+      "src": "../../../../../node_modules/.pnpm/@element-plus+icons-vue@2.1.0_vue@3.3.4/node_modules/@element-plus/icons-vue/dist/index.js",
+      "file": "@element-plus_icons-vue.js",
+      "fileHash": "0b5b8f49",
       "needsInterop": false
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-QATPWTHC": {
+      "file": "chunk-QATPWTHC.js"
+    },
+    "chunk-IDDR5KND": {
+      "file": "chunk-IDDR5KND.js"
+    },
+    "chunk-UG43UALV": {
+      "file": "chunk-UG43UALV.js"
+    },
+    "chunk-RJXUSZH2": {
+      "file": "chunk-RJXUSZH2.js"
+    },
+    "chunk-DFKQJ226": {
+      "file": "chunk-DFKQJ226.js"
+    }
+  }
 }
