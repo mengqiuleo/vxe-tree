@@ -22,17 +22,6 @@ export default {
         link: 'https://www.npmjs.com/settings/axios-plugin/packages'
       },
     ],
-    // markdown: {
-    //   theme: {
-    //     light: 'min-dark',
-    //     dark: 'one-dark-pro',
-    //   },
-    //   lineNumbers: true,
-    //   config: (md) => {
-    //     md.use(require('markdown-it-container'))
-    //   },
-    // },
-    
     algolia: {
       apiKey: "1b9f029b9fb387a0cb9eef2145b29d62",
       indexName: "chai-mayor-gitee",
@@ -119,8 +108,53 @@ export default {
       "/others": [
         { text: "LICENSE", link: "/others/license" },
         { text: "CHANGELOG", link: "/others/changelog" },
+      ],
+      "/components/": [
+        {
+          text: "基础配置",
+          items: [
+            { text: "基本用法", link: "/components/basic" },
+            { text: "节点懒加载", link: "/components/lazyLoad" },
+            { text: "可勾选", link: "/components/check" },
+            { text: "默认状态", link: "/components/defaultState" },
+            { text: "禁用状态", link: "/components/disabledState" },
+            { text: "连接线", link: "/components/showLine" },
+            { text: "手风琴模式", link: "/components/accordion" },
+            { text: "复选框位置", link: "/components/checkBoxPos" },
+            { text: "默认展开所有子节点", link: "/components/openAll" },
+          ],
+        },
+        {
+          text: "高级配置",
+          items: [
+            { text: "自定义图标", link: "/components/customIcon" },
+            { text: "节点合并", link: "/components/mergeNode" },
+            { text: "右键菜单", link: "/components/contextMenu" },
+            { text: "操作按钮", link: "/components/operate" },
+            { text: "搜索过滤", link: "/components/search" },
+            { text: "虚拟滚动", link: "/components/virtualScroll" },
+            { text: "可拖拽树", link: "/components/drag" },
+          ],
+        },
+        {
+          text: "参数 & 事件 & 插槽 & 类型",
+          items: [
+            { text: "Tree 参数", link: "/components/design" },
+            { text: "Tree 事件", link: "/components/design" },
+            { text: "Tree 插槽", link: "/components/design" },
+            { text: "TreeNode 参数", link: "/components/installation" },
+            { text: "Tree 类型定义", link: "/components/quickstart" },
+            { text: "treeFactory", link: "/components/quickstart" },
+          ],
+        },
+        {
+          text: "主题配置",
+          items: [
+            { text: "自定义配色", link: "/guide/design" },
+          ],
+        },
       ]
-    }
+    },
   },
   markdown: {
     // dark-plus vscode
