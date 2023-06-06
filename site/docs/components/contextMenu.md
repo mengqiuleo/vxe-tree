@@ -2,7 +2,7 @@
 import contextMenu from 'exam/tree/contextMenu.vue'
 </script>
 
-# 节点合并
+# 右键菜单 <el-badge value="todo" type='warning'></el-badge> 
 
 通过 `show-contextMenu` 属性开启右键菜单。
 同时 `node-contextmenu` 方法监听右键事件。

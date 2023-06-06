@@ -19,7 +19,7 @@ export default {
       { icon: 'github', link: 'https://github.com/mengqiuleo/vxe-tree'},
       {
         icon: { svg: read('../public/npm.svg')} ,
-        link: 'https://www.npmjs.com/settings/axios-plugin/packages'
+        link: 'https://www.npmjs.com/package/vxe-tree'
       },
     ],
     algolia: {
@@ -91,13 +91,6 @@ export default {
           ],
         },
         {
-          text: "进阶",
-          items: [
-            { text: "国际化", link: "/guide/i18n" },
-            { text: "暗黑模式", link: "/guide/dark" },
-          ],
-        },
-        {
           text: "开发",
           items: [
             { text: "开发指南", link: "/guide/guide" },
@@ -106,6 +99,7 @@ export default {
         },
       ],
       "/others": [
+        { text: "TODO", link: "/others/TODO" },
         { text: "LICENSE", link: "/others/license" },
         { text: "CHANGELOG", link: "/others/changelog" },
       ],
@@ -139,18 +133,18 @@ export default {
         {
           text: "参数 & 事件 & 插槽 & 类型",
           items: [
-            { text: "Tree 参数", link: "/components/design" },
-            { text: "Tree 事件", link: "/components/design" },
-            { text: "Tree 插槽", link: "/components/design" },
-            { text: "TreeNode 参数", link: "/components/installation" },
-            { text: "Tree 类型定义", link: "/components/quickstart" },
-            { text: "treeFactory", link: "/components/quickstart" },
+            { text: "Tree 参数", link: "/components/canshu" },
+            { text: "Tree 事件", link: "/components/shijian" },
+            { text: "Tree 插槽", link: "/components/chacao" },
+            { text: "TreeNode 参数", link: "/components/treeNode" },
+            { text: "Tree 类型定义", link: "/components/leixing" },
+            { text: "treeFactory", link: "/components/treefactory" },
           ],
         },
         {
           text: "主题配置",
           items: [
-            { text: "自定义配色", link: "/guide/design" },
+            { text: "自定义配色", link: "/components/color" },
           ],
         },
       ]

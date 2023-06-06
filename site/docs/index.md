@@ -10,14 +10,14 @@ appearance: true
 hero:
   name: vxeTree
   text: A powerful tree component for Vue3
-  tagline: 高效而美观、无限滚动
+  tagline: 高效而美观、虚拟滚动
   image:
     src: /logo.svg
     alt: vxeTree
   actions:
     - theme: brand
       text: 开始使用
-      link: /guide/installation
+      link: /guide/design
     - theme: alt
       text: 在 Github 上查看
       link: https://github.com/mengqiuleo/vxe-tree

@@ -2,7 +2,9 @@
 import accordion from 'exam/tree/accordion.vue'
 </script>
 
-# 手风琴模式
+# 手风琴模式 <el-badge value="todo" type='warning'></el-badge>
+
+
 同一级的节点，每次只能展开一个。
 可通过 `accordion` 属性开启手风琴模式。
 

@@ -1,23 +1,38 @@
-# 设计
+# vxeTree <el-badge value="0.2.0" type='primary'></el-badge>
 
-## 项目名称
+![logo](/public/logo.svg)
 
-Hview-UI
+## 项目背景
 
-### 寓意
-
-往往学习编程的第一句代码都是 Hello World，而我们开发组件库也是第一次开发，我们的组件库也是参照已有的组件库进行开发和学习，而 view 有观察的意思并且和 vue 同音，所以我们将 h 和 view 融合在了一起，给组件库命名为 hview-ui 寓意我们这个新生的组件库通过学习融合现有组件库的优点，希望能为大家呈现出一个不错的组件库项目
+虽然 `element-plus` 和 `ant-design` 等 UI 库中都提供了 `tree` 组件，但是当前开源组件库中，无法将所有方法和属性集中到单一的树形组件中，所以我希望写一个功能齐全的业务通用组件。
 
 <br/>
 
-## 项目 Logo
 
-[![img](https://camo.githubusercontent.com/33905ebd43fab53ba7ddf546e5a34e5618d61beca3bed4c440c9bf01c9712339/68747470733a2f2f6f73732e7a686973686979752e6f6e6c696e652f6d61726b646f776e5f696d616765732f3230323330313139313930383839362e706e67)](https://camo.githubusercontent.com/33905ebd43fab53ba7ddf546e5a34e5618d61beca3bed4c440c9bf01c9712339/68747470733a2f2f6f73732e7a686973686979752e6f6e6c696e652f6d61726b646f776e5f696d616765732f3230323330313139313930383839362e706e67)
 
-### 想法
 
-view 还有透视、视图的意思，这里就用了三个不同视图方向的图案组成这个 H 让其变成立体多面效果
+## 技术栈
 
-### 寓意
+  - Vue3
+  - TSX
+  - TypeScript
+  - Sass
+  - Rollup
+  - Jest
 
-我们的组件库还存在很多不完善的地方，非常希望广大开发人员能够使用我们组件库和给我们进行反馈和提问，我们会虚心接受，然后接纳大家的意见，不断迭代出让开发者满意的项目
+组件中各种方法和属性的实现，大量采用 hook 的方式进行开发，将状态逻辑与 UI 逻辑分离，使代码更加清晰和易于维护。
+
+
+## 组件LOGO
+
+灵感来源于 [vxe-table](https://vxetable.cn/#/table/start/install)，这是一个 vue 表格解决方案，因此取该组件的前缀，希望实现一个 vue3 tree组件解决方案。
+
+
+## 鸣谢
+[element-plus](http://element-plus.org/zh-CN/)
+
+[ant-design](https://antdv.com/components/overview)
+
+[Naive UI](https://www.naiveui.com/zh-CN/light)
+
+[Vue DevUI](https://vue-devui.github.io/)
