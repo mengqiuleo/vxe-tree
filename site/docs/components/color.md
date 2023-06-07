@@ -1,3 +1,7 @@
+<script setup>
+import color from 'exam/tree/color.vue'
+</script>
+
 # 自定义配色
 
 在引入默认配置后，引入自己的配置来进行覆盖。
@@ -16,3 +20,8 @@
 --vxe-list-item-selected-bg: #f2f5fc;
 --vxe-list-item-hover-bg: #f2f2f3; 
 ```
+
+
+::: code tree/color
+<color></color>
+:::
