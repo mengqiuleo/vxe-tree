@@ -17,7 +17,7 @@ export function useTree(tree: ITreeNode[], plugins = [], context: SetupContext):
   const core: IUseCore = useCore()(treeData);
 
   // 因为展开操作和懒加载有耦合，需要此处引入
-  const lazyLode = useLazyLoad()(treeData, core, context);
+  const lazyLode = useLazyLoad()(treeData, core, context);//这里hook返回的其实就是 lazyLoadNodes 事件
 
   //注册所有的plugin，然后返回这些plugin暴露的方法
   const pluginMethods = DEFAULT_TREE_PLUGINS.concat(plugins).reduce((acc, plugin) => {

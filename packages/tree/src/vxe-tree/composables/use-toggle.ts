@@ -34,7 +34,7 @@ export function useToggle() {
         expandNode(node);
       }
       //* 懒加载节点: 耦合
-      lazyLoadNodes(node);
+      lazyLoadNodes(node);//为什么这里我们不用判断当前节点是否懒加载？因为我们会在lazyLoadNodes中进行判断
     };
 
     const expandAllNodes = (): void => { //展开所有节点
