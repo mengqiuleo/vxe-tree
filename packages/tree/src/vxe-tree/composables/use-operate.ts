@@ -10,7 +10,7 @@ export function useOperate() {
       const children = getChildren(parentNode, {
         recursive: false,
       });
-      const lastChild = children[children.length - 1];
+      const lastChild = children[children.length - 1]; // 获取当前父节点的最后一个子节点
       let insertedIndex = getIndex(parentNode) + 1;
 
       if (referenceNode) {
@@ -21,6 +21,12 @@ export function useOperate() {
 
       setNodeValue(parentNode, 'expanded', true);
       setNodeValue(parentNode, 'isLeaf', false);
+      let childrenLen = parentNode.childNodeCount
+      if(!childrenLen){
+        childrenLen = 0
+        setNodeValue(parentNode, 'childNodeCount', childrenLen+1);
+      }
+      // console.log('当前父节点', parentNode)
 
       if (lastChild) {
         setNodeValue(lastChild, 'parentChildNodeCount', children.length + 1);

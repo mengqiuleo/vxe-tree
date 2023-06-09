@@ -20,7 +20,7 @@ const data = ref([
 ]);
 </script>
 
-<style>
+<style scoped>
 :root {
   --vxe-brand: red; 
   --vxe-list-item-selected-bg: blue; 

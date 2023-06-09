@@ -165,12 +165,18 @@ export default defineComponent({
             {/* 新增或删除： isShowOperationArea值是干嘛的？我们鼠标移到每一个元素身上，就会显示add和delete图标 */}
             {operate.value && isShowOperationArea.value && (
               <div class={nodeOperationAreaClass.value}>
-                <IconAdd onClick={() => {
+                {/* <IconAdd onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
                   }}></IconAdd>
                 <IconDelete onClick={() => {
                     removeNode?.(data.value);
-                  }}></IconDelete>   
+                  }}></IconDelete>    */}
+                <span><IconAdd onClick={() => {
+                    insertBefore?.(data.value, { label: 'New node' });
+                  }}></IconAdd></span>
+                <span><IconDelete onClick={() => {
+                    removeNode?.(data.value);
+                  }}></IconDelete></span>   
                 {/* <span onClick={() => {
                     insertBefore?.(data.value, { label: 'New node' });
                   }}><IconAdd/></span>

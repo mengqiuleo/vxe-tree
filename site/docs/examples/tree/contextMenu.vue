@@ -1,15 +1,27 @@
 <template>
   <vxe-tree :data="data" check :show-contextMenu="true" @node-contextmenu="contextMenu">
     <template #contextmenu="{ nodeData }">
-      <div>
+      <!-- <div>
         {{ nodeData.label }}
-      </div>
+      </div> -->
+      <el-dropdown trigger="contextmenu">
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>Action 1</el-dropdown-item>
+            <el-dropdown-item>Action 2</el-dropdown-item>
+            <el-dropdown-item>Action 3</el-dropdown-item>
+            <el-dropdown-item>Action 4</el-dropdown-item>
+            <el-dropdown-item>Action 5</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </template>
   </vxe-tree>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 
 const data = ref([
   {
