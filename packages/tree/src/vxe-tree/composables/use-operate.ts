@@ -48,13 +48,15 @@ export function useOperate() {
       data.value = data.value.slice(0, insertedIndex).concat(currentNode.value, data.value.slice(insertedIndex, data.value.length));
     };
 
+    // recursive代表是否要递归删除子节点
     const removeNode = (node: IInnerTreeNode, config = { recursive: true }): void => {
-      if (!config.recursive) {
-        getChildren(node).forEach((child) => {
+      if (!config.recursive) {//不递归删除它的子节点，那么所有孩子层级减一，默认是要递归删除
+        getChildren(node).forEach((child) => { 
           setNodeValue(child, 'level', getLevel(child) - 1);
         });
       }
 
+      //筛选出除要删除节点和其子孙节点之外的所有节点，并将这些节点重新赋值给原始数据源data。
       data.value = data.value.filter((item) => {
         if (config.recursive) {
           return (
