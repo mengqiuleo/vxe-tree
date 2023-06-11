@@ -6,9 +6,7 @@ import {
 } from './checkbox-types';
 
 export function useCheckbox(props: CheckboxProps, ctx: SetupContext): UseCheckboxFn {
-
-
-  const isChecked = computed(() => props.checked || props.modelValue);
+  const isChecked = computed(() => props.checked || props.modelValue);//* 绑定 modelValue 属性实现双向数据绑定
   const mergedChecked = computed(() => {
     return  isChecked.value;
   });
@@ -31,7 +29,7 @@ export function useCheckbox(props: CheckboxProps, ctx: SetupContext): UseCheckbo
   const toggle = () => {
     const current = !isChecked.value;
     ctx.emit('update:checked', current);
-    ctx.emit('update:modelValue', current);
+    ctx.emit('update:modelValue', current);//* 双向数据绑定事件触发 
     ctx.emit('change', current);
   };
   const handleClick = ($event: Event) => {

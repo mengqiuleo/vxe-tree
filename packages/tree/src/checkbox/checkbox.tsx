@@ -24,7 +24,7 @@ export default defineComponent({
       const checkboxCls = {
         [ns.b()]: true,
         active: mergedChecked.value,
-        'half-checked': props.halfChecked,
+        'half-checked': props.halfChecked, //* 增加对应类实现半选样式
         disabled: props.disabled,
         unchecked: !mergedChecked.value,
       };
