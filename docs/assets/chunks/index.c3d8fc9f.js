@@ -1,0 +1,1 @@
+import{i as a}from"./use-form-item.df37cbde.js";import{b as d,X as c,l as o,f as u}from"./framework.99602b11.js";const s=d(0),I=2e3,i=Symbol("zIndexContextKey"),z=r=>{const x=r||c(i,void 0),e=o(()=>{const t=u(x);return a(t)?t:I}),n=o(()=>e.value+s.value);return{initialZIndex:e,currentZIndex:n,nextZIndex:()=>(s.value++,n.value)}};export{I as d,z as u,i as z};
