@@ -22,7 +22,7 @@ export function useCheck(options: Ref<{ checkStrategy: ICheckStrategy }> = ref({
       context.emit('check-change', node);
     };
 
-  
+  //# 没懂这个函数
     const setNodeValueInAvailable = (node: ISetNodeValue[0], key: ISetNodeValue[1], value: ISetNodeValue[2]) => {
       if (!node.disableCheck) {
         setNodeValue(node, key, value);
@@ -35,7 +35,7 @@ export function useCheck(options: Ref<{ checkStrategy: ICheckStrategy }> = ref({
       context.emit('check-change', node);
     };
 
-    // 用于控制父节点的选中状态。它会递归地向上更新所有祖先节点的选中状态。
+    //* 用于控制父节点的选中状态。它会递归地向上更新所有祖先节点的选中状态。
     const controlParentNodeChecked = (node: IInnerTreeNode, checked: boolean): void => {
       if (!node.parentId) {
         return;
@@ -70,14 +70,14 @@ export function useCheck(options: Ref<{ checkStrategy: ICheckStrategy }> = ref({
     };
 
     // 定义 toggleCheckNode 函数，用于切换指定节点（也就是当前节点）的选中状态，并触发 check-change 事件。
-    // 如果指定节点是选中状态，则将其子节点全部设为未选中状态，反之则将其子节点全部设为选中状态。
+    //* 如果指定节点是选中状态，则将其子节点全部设为未选中状态，反之则将其子节点全部设为选中状态。
     const toggleCheckNode = (node: IInnerTreeNode): void => {
       const checked = getNode(node).checked; //获取当前节点的选中状态
       if (checked) { //如果选中了
         setNodeValue(node, 'checked', false); //接下来就是让它为未选中
         context.emit('check-change', node);
 
-        if (['downward', 'both'].includes(options.value.checkStrategy)) { //如果配置了 'downward' 或 'both'
+        if (['downward', 'both'].includes(options.value.checkStrategy)) { //*如果配置了 'downward' 或 'both'
           getChildren(node).forEach((item) => setNodeValueInAvailable(item, 'checked', false)); //当前节点设置为未选中，那么子节点全部也为未选中
         }
       } else {
@@ -91,7 +91,7 @@ export function useCheck(options: Ref<{ checkStrategy: ICheckStrategy }> = ref({
 
       //根据配置 options.value.checkStrategy，控制父节点的选中状态。如果配置了 'upward' 或 'both'，则调用 controlParentNodeChecked 函数控制父节点的选中状态。
       //如果当前节点从选中状态切换到未选中状态，那么向上遍历直到找到根节点并更新其选中状态；如果当前节点从未选中状态切换到选中状态，那么向上遍历直到找到根节点并更新其选中状态。
-      if (['upward', 'both'].includes(options.value.checkStrategy)) {
+      if (['upward', 'both'].includes(options.value.checkStrategy)) {//* 实现 upward 和 downward 的关键
         controlParentNodeChecked(node, !checked);
       }
     };
