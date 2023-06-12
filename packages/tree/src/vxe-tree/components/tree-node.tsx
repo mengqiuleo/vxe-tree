@@ -154,6 +154,7 @@ export default defineComponent({
 
               {dragdrop.value && (
                 <>
+                  {/* 这里并不是每个div是个框，而是每个div是一条线 */}
                   <div class={ns.em('node', 'drop-top')} />
                   <div class={ns.em('node', 'drop-bottom')} />
                   <div class={ns.em('node', 'drop-left')} />

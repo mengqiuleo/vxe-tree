@@ -47,6 +47,7 @@ export function flatToNested(flatTree: IInnerTreeNode[]): ITreeNode[] {
  * - 'currentIndex'：当前节点在父节点的索引
  */
 const { setInitSelectedNode } = useInitSelectCollection();
+// * 在 use-Tree 中使用
 export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0, path: IInnerTreeNode[] = []): IInnerTreeNode[] {
   level++;
 

@@ -30,7 +30,7 @@
 
   // 拖拽样式
   &--drop {
-    &-inner {
+    &-inner { //* 拖拽里面
       .#{$vxe-prefix}-tree__node {
         &--drop-top {
           position: absolute;
@@ -70,7 +70,7 @@
       }
     }
 
-    &-prev {
+    &-prev { //*一条横线，prev指自己的前面
       .#{$vxe-prefix}-tree__node {
         &--drop-top {
           position: absolute;
@@ -83,7 +83,7 @@
       }
     }
 
-    &-next::before {
+    &-next::before { //*一条横线，prev指自己的前面
       .#{$vxe-prefix}-tree__node {
         &--drop-bottom {
           position: absolute;

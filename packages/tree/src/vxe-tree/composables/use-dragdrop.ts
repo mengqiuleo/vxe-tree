@@ -69,7 +69,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
           return true;
         });
       };
-      findDragAndDropNode(cloneData);
+      findDragAndDropNode(cloneData);//找到拖拽节点和目标节点
       if (currentDragNode && currentDropNode && currentDropType) {
         const cloneDragNode = Object.assign({}, currentDragNode.target[currentDragNode.index]);//备份当前克隆节点
         if (currentDropType === 'dropPrev') {
@@ -113,6 +113,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
     };
 
     // onDragover 和 onDragleave 用来判断当前的拖拽类型是什么：比如是放在前面、后面、里面
+    //根据目标元素的位置和拖动行为，在目标元素上添加相应的样式以及设置拖放的效果
     const onDragover = (event: DragEvent): void => {
       event.preventDefault();
       event.stopPropagation();
@@ -128,25 +129,28 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
           return;
         }
         let curDropType: IDropType = {};
-        if (typeof props.dragdrop === 'object') {
-          curDropType = props.dragdrop;
-        } else if (props.dragdrop === true) {
-          curDropType = { dropInner: true };
+        if (typeof props.dragdrop === 'object') { //如果用户传入的是对象
+          curDropType = props.dragdrop;//设置插入到前面、后面、里面
+        } else if (props.dragdrop === true) { //如果是布尔值
+          curDropType = { dropInner: true }; //直接设置插入到子节点
         }
         const { dropPrev, dropNext, dropInner } = curDropType;
 
-        let innerDropType: DragState['dropType'];
+        let innerDropType: DragState['dropType'];//存储当前拖放目标的位置类型
 
-        const prevPercent = dropPrev ? (dropInner ? 0.25 : dropNext ? 0.45 : 1) : -1;
-        const nextPercent = dropNext ? (dropInner ? 0.75 : dropPrev ? 0.55 : 0) : 1;
-        const currentTarget = event.currentTarget as HTMLElement | null;
-        const targetPosition = currentTarget?.getBoundingClientRect();
-        const distance = event.clientY - (targetPosition?.top || 0);
+        //计算出前面插入位置和后面插入位置的阈值，根据这些阈值判断当前拖动节点应该插入到目标节点的哪个位置。
+        const prevPercent = dropPrev ? (dropInner ? 0.25 : dropNext ? 0.45 : 1) : -1;//如果三个都同意，0.25
+        const nextPercent = dropNext ? (dropInner ? 0.75 : dropPrev ? 0.55 : 0) : 1;//同上，0.75
+        const currentTarget = event.currentTarget as HTMLElement | null; //获取鼠标目标元素
+        const targetPosition = currentTarget?.getBoundingClientRect(); //* targetPosition.top 指当期目标节点的高度
+        const distance = event.clientY - (targetPosition?.top || 0);//计算出鼠标距离目标元素顶部的距离
+        //* event.clientY 是鼠标的高度，越往下值越大，都是正值
 
+        //通过比较鼠标位置和目标元素的阈值，确定当前拖动节点应该插入到目标节点的哪个位置类型（前插、后插或内部插入）
         if (distance < (targetPosition?.height || 0) * prevPercent) {
-          innerDropType = 'dropPrev';
+          innerDropType = 'dropPrev';//dropPrev其实是指自己的前面
         } else if (distance > (targetPosition?.height || 0) * nextPercent) {
-          innerDropType = 'dropNext';
+          innerDropType = 'dropNext';//指的是上一个节点
         } else if (dropInner) {
           innerDropType = 'dropInner';
         } else {

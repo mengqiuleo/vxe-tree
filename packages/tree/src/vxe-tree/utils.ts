@@ -1,16 +1,5 @@
 import type { ICheck, ICheckStrategy, ITreeNode, IInnerTreeNode } from './composables/use-tree-types';
-// import { randomId } from '../../shared/utils';
-
-function randomId(n = 8): string {
-  // 生成n位长度的字符串
-  const str = 'abcdefghijklmnopqrstuvwxyz0123456789'; // 可以作为常量放到random外面
-  let result = '';
-  for (let i = 0; i < n; i++) {
-    result += str[parseInt((Math.random() * str.length).toString())];
-  }
-  return result;
-}
-
+import { randomId } from '../shared/randomId';
 
 /**
  * true 默认为 both，false 默认为 none。
@@ -23,7 +12,7 @@ export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
     : check;
 };
 /**
- * Standardized tree node，我感觉这个是没有拍平的，只是遍历每个节点，然后让它增加id
+ * Standardized tree node 此时已经拍平了
  * @param trees
  * @param keyName
  * @param childrenName
@@ -32,7 +21,7 @@ export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
  */
 export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName = 'children', parentId?: string): IInnerTreeNode[] => {
   return trees.map((item) => {
-    const curItem = { ...item, parentId } as IInnerTreeNode;//给每个节点增加 parentId
+    const curItem = { ...item, parentId } as IInnerTreeNode;//* 给每个节点增加 parentId
 
     if (!(keyName in curItem) || !curItem[keyName as 'id'] ) { //先给每个节点增加一个 id
       curItem[keyName as 'id'] = randomId();
@@ -45,7 +34,7 @@ export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName
     ) {
       //* Child nodes exist: 拖拽递归处理，如果拖拽的当前节点存在子节点，那么所有子节点也需要拖拽
       curItem[childrenName as 'children'] = formatBasicTree(
-        curItem[childrenName as 'children'] as ITreeNode[],
+        curItem[childrenName as 'children'] as ITreeNode[], //*这里遍历它的孩子节点
         keyName,
         childrenName,
         curItem[keyName as 'id'],
