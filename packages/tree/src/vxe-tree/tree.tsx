@@ -4,6 +4,7 @@ import VTreeNodeContent from './components/tree-node-content';
 import VTreeNodeToggle from './components/tree-node-toggle';
 import VTreeNodeLoading from './components/tree-node-loading';
 import VirtualList from '../virtual-list/virtual-list';
+// import VirtualList from '../virtual-list/virtual';
 import {
   useTree,
   useCheck,
@@ -126,6 +127,9 @@ export default defineComponent({
       }
       return props.height ? (
         <VirtualList ref={virtualListRef} class={ns.b()} {...virtualListProps} v-slots={vSlotsProps} />
+        // <VirtualList ref={virtualListRef} {...virtualListProps}>
+        //   {{ default: (item) => renderDTreeNode(item) }}
+        // </VirtualList>
       ) : (
         <div ref={normalRef} class={ns.b()}>
           <TransitionGroup name={ns.m('list')}>{treeData?.map(renderDTreeNode)}</TransitionGroup>

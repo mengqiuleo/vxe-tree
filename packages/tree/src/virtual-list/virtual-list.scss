@@ -1,0 +1,23 @@
+.vxe-virtual-list {
+  .item {
+    height: 24px;
+  }
+
+  &__container { //可视区域
+    height: 300px;
+    overflow: auto; //这个属性可以出现滚动条
+    position: relative;
+  }
+
+  &__blank { //这个属性要把container撑开，也就是它要使得出现滚动条
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* height: 10000px; //上左右都设置了，下面不设置，而是使用了 height，这样就能撑开 height是列表项总高度：itemHeight*itemCount */
+  }
+
+  & { //我们让数据列表
+    transform: translate3d(0,0,0);//中间的是列表区域在Y轴的偏移量，会跟随鼠标实时变化
+  }
+}
