@@ -71,22 +71,22 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       };
       findDragAndDropNode(cloneData);
       if (currentDragNode && currentDropNode && currentDropType) {
-        const cloneDrapNode = Object.assign({}, currentDragNode.target[currentDragNode.index]);//备份当前克隆节点
+        const cloneDragNode = Object.assign({}, currentDragNode.target[currentDragNode.index]);//备份当前克隆节点
         if (currentDropType === 'dropPrev') {
-          currentDropNode.target.splice(currentDropNode.index, 0, cloneDrapNode);
+          currentDropNode.target.splice(currentDropNode.index, 0, cloneDragNode);
         } else if (currentDropType === 'dropNext') {
-          currentDropNode.target.splice(currentDropNode.index + 1, 0, cloneDrapNode);
+          currentDropNode.target.splice(currentDropNode.index + 1, 0, cloneDragNode);
         } else if (currentDropType === 'dropInner') {
-          const children = currentDropNode.target[currentDropNode.index].children;
+          const children = currentDropNode.target[currentDropNode.index].children;//获取当前放置节点的所有子节点
           if (Array.isArray(children)) {
-            children.unshift(cloneDrapNode);
+            children.unshift(cloneDragNode);//把drag节点插入
           } else {
-            currentDropNode.target[currentDropNode.index].children = [cloneDrapNode];
+            currentDropNode.target[currentDropNode.index].children = [cloneDragNode];//放置节点原来是一个叶子节点
           }
         }
         const targetIndex = currentDragNode.target.indexOf(currentDragNode.item);
         if (targetIndex !== -1) {
-          currentDragNode.target.splice(targetIndex, 1);
+          currentDragNode.target.splice(targetIndex, 1);//找到拖拽节点，并从原来的位置上删除
         }
       }
 
@@ -112,6 +112,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
       event.dataTransfer?.setData('Text', JSON.stringify(treeInfo));
     };
 
+    // onDragover 和 onDragleave 用来判断当前的拖拽类型是什么：比如是放在前面、后面、里面
     const onDragover = (event: DragEvent): void => {
       event.preventDefault();
       event.stopPropagation();
@@ -156,7 +157,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
           if (classList) {
             if (!classList.contains(dropTypeMap[innerDropType])) {
               removeDraggingStyle(currentTarget);
-              classList.add(dropTypeMap[innerDropType]);
+              classList.add(dropTypeMap[innerDropType]);//* 动态添加class
             }
           }
         } else {
@@ -193,7 +194,7 @@ export function useDragdrop(props: TreeProps, data: Ref<IInnerTreeNode[]>) {
             }
             if (dragState.dropType) {
               let result = handlerDropData(dragNodeId, dropNode.id, dragState.dropType);
-              result = formatBasicTree(result);
+              result = formatBasicTree(result); //*拖拽递归处理，如果拖拽的当前节点存在子节点，那么所有子节点也需要拖拽
               data.value = result;
             }
           }

@@ -118,9 +118,9 @@ export interface IUseSearchFilter {
 }
 
 export interface IDropType {
-  dropPrev?: boolean;
-  dropNext?: boolean;
-  dropInner?: boolean;
+  dropPrev?: boolean;//丢在节点的上面
+  dropNext?: boolean;//下面
+  dropInner?: boolean;//里面
 }
 
 /**

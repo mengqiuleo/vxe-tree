@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu, ElMessage } from 'element-plus'
 
 const data = ref([
   {
@@ -46,5 +46,9 @@ const data = ref([
 
 const contextMenu = (node) => {
   console.log(node)
+  ElMessage({
+    message: node.label,
+    type: 'success'
+  })
 }
 </script>

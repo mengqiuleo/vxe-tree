@@ -32,12 +32,9 @@ export const formatCheckStatus = (check: ICheck): ICheckStrategy => {
  */
 export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName = 'children', parentId?: string): IInnerTreeNode[] => {
   return trees.map((item) => {
-    const curItem = { ...item, parentId } as IInnerTreeNode;
-    //先给每个节点增加一个 id
-    if (
-      !(keyName in curItem)
-      || !curItem[keyName as 'id']
-    ) {
+    const curItem = { ...item, parentId } as IInnerTreeNode;//给每个节点增加 parentId
+
+    if (!(keyName in curItem) || !curItem[keyName as 'id'] ) { //先给每个节点增加一个 id
       curItem[keyName as 'id'] = randomId();
       curItem.idType = 'random';
     }
@@ -46,7 +43,7 @@ export const formatBasicTree = (trees: ITreeNode[], keyName = 'id', childrenName
       && Array.isArray(curItem[childrenName as 'children'])
       && curItem[childrenName as 'children']?.length
     ) {
-      // Child nodes exist
+      //* Child nodes exist: 拖拽递归处理，如果拖拽的当前节点存在子节点，那么所有子节点也需要拖拽
       curItem[childrenName as 'children'] = formatBasicTree(
         curItem[childrenName as 'children'] as ITreeNode[],
         keyName,
