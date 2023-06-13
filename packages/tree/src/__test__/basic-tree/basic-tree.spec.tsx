@@ -5,9 +5,6 @@ import  Tree  from '../../vxe-tree/tree';
 import { basicTreeData } from './basic-tree-data';
 import { useNamespace } from '../../shared/use-namespace';
 
-// jest.mock('../../../locale/create', () => ({
-//   createI18nTranslate: () => jest.fn(),
-// }));
 
 const ns = useNamespace('tree', true);
 const noDotNs = useNamespace('tree');
@@ -118,7 +115,7 @@ describe('Basic tree', () => {
     await nodes[0].get(ns.e('node-folder')).trigger('click');
     expect(wrapper.findAll(ns.e('node'))[0].classes()).not.toContain(noDotNs.em('node', 'open'));
 
-    // // 再次点击，节点展开
+    // 再次点击，节点展开
     await nodes[0].get(ns.e('node-folder')).trigger('click');
     expect(wrapper.findAll(ns.e('node'))[0].classes()).toContain(noDotNs.em('node', 'open'));
   });
