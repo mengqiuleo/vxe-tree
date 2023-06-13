@@ -27,10 +27,10 @@ export function useTreeNode(data: ComputedRef<IInnerTreeNode>): IUseTreeNode {
   });
 
   const nodeVLineClass = computed(() => [data.value?.level !== 1 && ns.e('node-vline')]);
-  //连接线的样式
+  //*连接线的样式，这里只是设置 垂直样式
   const nodeVLineStyles = computed(() => {
-    if (!data.value || data.value.level === 1) {
-      return [];
+    if (!data.value || data.value.level === 1) { //当前节点的层级是否为 1，根节点层级为1
+      return []; //如果是，则返回一个空数组，因为第一层不需要绘制垂直线条
     }
     const { currentIndex = 0, parentChildNodeCount = 0, level, expanded, isLeaf } = data.value;
     return Array.from({ length: data.value.level - 1 }).map((_, index) => ({

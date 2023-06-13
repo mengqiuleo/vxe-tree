@@ -52,7 +52,7 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
   level++;
 
   return tree.reduce((acc: IInnerTreeNode[], item: ITreeNode, currentIndex) => {
-    const newItem: Partial<IInnerTreeNode> = Object.assign({}, item);
+    const newItem: Partial<IInnerTreeNode> = Object.assign({}, item);//根据当前item生成新的newItem
     if (newItem.id === undefined) {
       newItem.id = randomId();
       newItem.idType = 'random';
@@ -67,7 +67,7 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
     newItem.currentIndex = currentIndex;
     newItem.childNodeCount = newItem.children?.length || 0;
 
-    if (path.length > 0 && path[path.length - 1]?.level >= level) {
+    if (path.length > 0 && path[path.length - 1]?.level >= level) { //如果当前节点不是子节点了，那么我们就清空path数组，然后重新记录
       while (path[path.length - 1]?.level >= level) {
         path.pop();
       }
@@ -80,10 +80,10 @@ export function generateInnerTree(tree: ITreeNode[], key = 'children', level = 0
       newItem.parentId = parentNode.id;
     }
 
-    if (!newItem[key]) {
+    if (!newItem[key]) {//这里的key指的是children，从传入的参数中看出来
       // @ts-ignore
-      return acc.concat({ ...newItem, isLeaf: newItem.isLeaf === false ? false : true });
-    } else {
+      return acc.concat({ ...newItem, isLeaf: newItem.isLeaf === false ? false : true });//如果当前节点没有子节点，则将其直接加入到结果数组 acc 中
+    } else { //否则，将其子节点递归地转化为 IInnerTreeNode 对象，并将其加入到当前节点的 children 属性中。
      // @ts-ignore
       return acc.concat(omit<ITreeNode>(newItem, 'children'), generateInnerTree(newItem[key], key, level, path));
     }
